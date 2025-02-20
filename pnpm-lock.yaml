@@ -66,14 +66,14 @@ importers:
         specifier: ^0.3.1
         version: 0.3.1
       hexo-theme-landscape:
-        specifier: ^1.0.0
-        version: 1.0.0
+        specifier: ^1.1.0
+        version: 1.1.0
       hexo-uglify:
         specifier: ^2.0.0
         version: 2.0.0
       pnpm:
-        specifier: ^10.2.1
-        version: 10.2.1
+        specifier: ^10.4.1
+        version: 10.4.1
       sharp:
         specifier: ^0.33.5
         version: 0.33.5
@@ -1444,8 +1444,8 @@ packages:
   hexo-tag-bilibili@0.3.1:
     resolution: {integrity: sha512-iGKv55g1oDq5519SZcjcerhA7yozGxiciE838oCxjh11BQlaM3GzttwmIfWGyJG1UKZaYHVCCYHElOU5jePIfQ==}
 
-  hexo-theme-landscape@1.0.0:
-    resolution: {integrity: sha512-bWQJWMqQI78wWiJPQZq5pJBH20TM442ShCaHGRetuEgMraxH0OKxB3NTupJzNEkzEk8DV2yrdizkXdKN6i501A==}
+  hexo-theme-landscape@1.1.0:
+    resolution: {integrity: sha512-nszjixBEiEDZjf7glAGbHg0nKGHZdUDwzFVVdRDeu4FeHfGcY5CZNl9sF4vSligjnD8IwFXpDfx5E+GRmNKvWg==}
 
   hexo-uglify@2.0.0:
     resolution: {integrity: sha512-pxKBWhe+WUkITVcFUKY8o3A16Zh8t9XRgmvuZD54HFOwApCxlJmWNSh7kMT1nsrElozpSzMPpFgsRG7yz7j92Q==}
@@ -2409,8 +2409,8 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
 
-  pnpm@10.2.1:
-    resolution: {integrity: sha512-OYA1x71pbQugsQpojtVYKFMp0n6plIBKUrrZFn2OOnK8uZP5aZWF08old5rGSUnvQidXpsMRAsEquTLly+XMkg==}
+  pnpm@10.4.1:
+    resolution: {integrity: sha512-x1O2w616+hOvOI+m2AgDWgCOMOqZk/WMZmPivF/yFnmqg02wlJhxKapNSIuG31f3tjSYGy+CfNysxpjMDPuIrw==}
     engines: {node: '>=18.12'}
     hasBin: true
 
@@ -4815,7 +4815,7 @@ snapshots:
     dependencies:
       bilibili-embed-convert: 0.4.1
 
-  hexo-theme-landscape@1.0.0: {}
+  hexo-theme-landscape@1.1.0: {}
 
   hexo-uglify@2.0.0:
     dependencies:
@@ -5818,7 +5818,7 @@ snapshots:
       execa: 0.10.0
       logalot: 2.1.0
 
-  pnpm@10.2.1: {}
+  pnpm@10.4.1: {}
 
   postcss-value-parser@4.2.0: {}
 
