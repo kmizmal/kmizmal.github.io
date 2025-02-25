@@ -72,8 +72,8 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
       pnpm:
-        specifier: ^10.4.1
-        version: 10.4.1
+        specifier: ^10.5.0
+        version: 10.5.0
       sharp:
         specifier: ^0.33.5
         version: 0.33.5
@@ -2088,6 +2088,9 @@ packages:
   nan@2.22.0:
     resolution: {integrity: sha512-nbajikzWTMwsW+eSsNm3QwlOs7het9gGJU5dDZzRTQGk03vyBOauxgI4VakDzE0PtsGTmXPsXTbbjVhRwR5mpw==}
 
+  nan@2.22.1:
+    resolution: {integrity: sha512-pfRR4ZcNTSm2ZFHaztuvbICf+hyiG6ecA06SfAxoPmuHjvMu0KUIae7Y8GyVkbBqeEIidsmXeYooWIX9+qjfRQ==}
+
   nanoid@3.3.8:
     resolution: {integrity: sha512-WNLf5Sd8oZxOm+TzppcYk8gVOgP+l58xNy58D0nbUnOxOWRWvlcCV4kUF7ltmI6PsrLl/BgKEyS4mqsGChFN0w==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
@@ -2409,8 +2412,8 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
 
-  pnpm@10.4.1:
-    resolution: {integrity: sha512-x1O2w616+hOvOI+m2AgDWgCOMOqZk/WMZmPivF/yFnmqg02wlJhxKapNSIuG31f3tjSYGy+CfNysxpjMDPuIrw==}
+  pnpm@10.5.0:
+    resolution: {integrity: sha512-ERBqWRbHQG/kuMuOMGeXS4co9HMIpPWsXoUDBK+m9X4oR9eVDf54h32NNr+0AdOBxCFds6TDVH/6Y8FDM6b6UQ==}
     engines: {node: '>=18.12'}
     hasBin: true
 
@@ -3734,7 +3737,7 @@ snapshots:
   canvas@2.11.2(encoding@0.1.13):
     dependencies:
       '@mapbox/node-pre-gyp': 1.0.11(encoding@0.1.13)
-      nan: 2.22.0
+      nan: 2.22.1
       simple-get: 3.1.1
     transitivePeerDependencies:
       - encoding
@@ -5509,6 +5512,9 @@ snapshots:
 
   nan@2.22.0: {}
 
+  nan@2.22.1:
+    optional: true
+
   nanoid@3.3.8: {}
 
   negotiator@0.6.3: {}
@@ -5818,7 +5824,7 @@ snapshots:
       execa: 0.10.0
       logalot: 2.1.0
 
-  pnpm@10.4.1: {}
+  pnpm@10.5.0: {}
 
   postcss-value-parser@4.2.0: {}
 
