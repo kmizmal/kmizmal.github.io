@@ -14,17 +14,14 @@ updated: 2024-10-26 22:29:00
 ### 下面是紫沐的联系方式
 
 ```QQ
-
 1622639476
-
 ```
 
 ```邮箱
-
 zxcvbnmal@88.com
-
 ```
-
+[Discord](https://discord.gg/xvS5cXuXN9)
+[Telegram](https://t.me/kmizmal_bot)
 ### 这里是紫沐绞尽脑汁编的自我介绍
 
 ~~我不想写自我介绍~~
