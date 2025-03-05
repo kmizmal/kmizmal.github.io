@@ -68,9 +68,6 @@ importers:
       hexo-theme-landscape:
         specifier: ^1.1.0
         version: 1.1.0
-      hexo-uglify:
-        specifier: ^2.0.0
-        version: 2.0.0
       pnpm:
         specifier: ^10.5.2
         version: 10.5.2
@@ -1446,10 +1443,6 @@ packages:
 
   hexo-theme-landscape@1.1.0:
     resolution: {integrity: sha512-nszjixBEiEDZjf7glAGbHg0nKGHZdUDwzFVVdRDeu4FeHfGcY5CZNl9sF4vSligjnD8IwFXpDfx5E+GRmNKvWg==}
-
-  hexo-uglify@2.0.0:
-    resolution: {integrity: sha512-pxKBWhe+WUkITVcFUKY8o3A16Zh8t9XRgmvuZD54HFOwApCxlJmWNSh7kMT1nsrElozpSzMPpFgsRG7yz7j92Q==}
-    engines: {node: '>= 10.13.0'}
 
   hexo-util@2.7.0:
     resolution: {integrity: sha512-hQM3h34nhDg0bSe/Tg1lnpODvNkz7h2u0+lZGzlKL0Oufp+5KCAEUX9wal7/xC7ax3/cwEn8IuoU75kNpZLpJQ==}
@@ -4819,11 +4812,6 @@ snapshots:
       bilibili-embed-convert: 0.4.1
 
   hexo-theme-landscape@1.1.0: {}
-
-  hexo-uglify@2.0.0:
-    dependencies:
-      micromatch: 4.0.8
-      terser: 5.36.0
 
   hexo-util@2.7.0:
     dependencies:

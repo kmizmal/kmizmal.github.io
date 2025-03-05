@@ -50,13 +50,13 @@ apt-get update&& apt-get upgrade -y&& apt-get install -y ca-certificates libc6 l
 >     └── (...)
 
 
-![](1.png)
+![1](https://img.zmal.top/1.3uuzeq4cw1.jpg)
 ##  配置
 推荐使用官方[在线配置文件生成器](https://justarchinet.github.io/ASF-WebConfigGenerator/#/bot)
 
 你要是想自己手搓[详细文档](https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Configuration-zh-CN)在这里
 
-![](2.png)
+![2](https://img.zmal.top/2.9dd3uvckzm.jpg)
 
 下载之后扔到config文件夹
 
@@ -65,15 +65,15 @@ apt-get update&& apt-get upgrade -y&& apt-get install -y ca-certificates libc6 l
 ./ArchiSteamFarm
 ```
 第一次推荐控制台启动，方便看日志，后期windows可以用文件夹里的.exe启动，Linux可以用文件夹里的.sh启动
-![](3.png)![](4.png)
+![3](https://img.zmal.top/3.4ub2rw741d.jpg)![4](https://img.zmal.top/4.1sf6qo5ruc.jpg)
 ##  后期修改配置文件
 使用 [ASF-ui](https://github.com/JustArchiNET/ArchiSteamFarm/wiki/IPC-zh-CN#asf-ui)
 当你看到控制台这些日志输出的时候，说明ASF-ui已被正确启动~~*别管我改端口号，默认就是**1242***~~
-![](5.png)
+![5](https://img.zmal.top/5.5tr6529v79.jpg)
 访问[http://localhost:1242](http://localhost:1242)
 你会看到这样的面板
-![](6.png)
-![](7.png)
+![6](https://img.zmal.top/6.8dx0hp9tti.jpg)
+![7](https://img.zmal.top/7.51eanbt9h3.jpg)
 默认开始挂卡
 我们~~只需要~~在GamesPlayedWhileIdle添加游戏的id就可以开始刷指定游戏的时长
 其他的里面解释的很详细，自己看着改
@@ -89,14 +89,14 @@ apt-get update&& apt-get upgrade -y&& apt-get install -y ca-certificates libc6 l
 # 下面开始将迁移到huggingface的步骤
  如果你不知道什么是[huggingface](https://huggingface.co/)，~~那我也懒得解释，~~你只需要知道它是和cf差不多的赛博大善人就行
 
- 注册，登录，**不教**
- ![](8.png)
+ 注册，登录，**~~不教~~**
+![8](https://img.zmal.top/8.9gwpsl5np5.jpg)
  前面随便填，这里选docker
 
  `public`公开方便后期保活，`private`涉密安全
 
-  ![](9.png)
-  点这里创建Dockerfile
+![9](https://img.zmal.top/9.esnmmuptn.jpg)
+  点这里创建Dockerfile![10](https://img.zmal.top/10.6ikfp2xe7w.jpg)
 ```dockerfile
 FROM ubuntu:22.04
 EXPOSE 1242
@@ -130,11 +130,12 @@ CMD bash ArchiSteamFarm-Service.sh
 
 停止你刚才在本地能正常跑的asf，把config里面的文件打包成config.zip,推荐带上解压密码
 
-![](11.png)上传之后到`setting`选项卡设置`Secrets`![](12.png)
+![11](https://img.zmal.top/11.3yelcfxflp.jpg)上传之后到`setting`选项卡设置`Secrets`
+![12](https://img.zmal.top/12.7i0j2905dq.jpg)
 理论上来说过一会你就能在`app`选项卡进入[ASF-ui](https://github.com/JustArchiNET/ArchiSteamFarm/wiki/IPC-zh-CN#asf-ui)了，后期临时改配置都可以在里面操作
 
 但[huggingface](https://huggingface.co/)的docker里面数据不能持久化，要想稳只能先暂停bot，然后在本地改好重复上面的步骤覆盖上传config.zip
 
-[huggingface](https://huggingface.co/)的space~~好像~~三天无访问就会自动休眠，我这里采用[uptimerobot](https://uptimerobot.com/)探针报活，能用，但不好用，如果你知道其他更好的方法欢迎与我联系
+[huggingface](https://huggingface.co/)的space~~好像~~三天无访问就会自动休眠，我这里采用[uptimerobot](https://uptimerobot.com/)探针报活，能用，但不好用，如果你知道其他更好的方法欢迎告诉我
 
 

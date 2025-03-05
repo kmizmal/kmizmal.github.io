@@ -40,7 +40,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: true
+post_asset_folder: false
 marked:
   prependRoot: true
   postAsset: true
@@ -130,7 +130,7 @@ minify:
       collapseWhitespace: true # Delete any extra space
       removeAttributeQuotes: true # Delete attribute quotes
   image:
-    enable: true
+    enable: false
     svg:
       enable: true
       ## 详细配置: https://github.com/imagemin/imagemin-svgo#imageminsvgooptionsbuffer
