@@ -12,7 +12,7 @@ git checkout --orphan new_branch
 git add .
 
 # 3. 提交新的初始提交
-git commit -m "Initial commit"
+git commit -m "初始化"
 
 # 4. 删除旧的 main（或 master）分支
 git branch -D main  # 如果原分支是 master，就改成 master
