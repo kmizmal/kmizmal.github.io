@@ -15,12 +15,12 @@ jobs:
         with:
           ref: main
           submodules: true
-                
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 22
-          
+
       - name: Install dependencies
         run: |
           npm install -g pnpm hexo-cli  # 全局安装 pnpm
@@ -31,16 +31,22 @@ jobs:
           #pnpm install hexo-autoprefixer --save #css兼容性
           pnpm add gifsicle
           pnpm rebuild
-          
+
       - name: Generate static files
         run: |
           hexo generate
       - name: CNAME file
         run: |
           echo 'blog.zmal.top' > ./public/CNAME
-
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          personal_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }} # 使用 PAT 认证
-          publish_dir: ./public                               # 指定生成的静态文件目录
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          keep_files: true
+
+      # - name: Deploy to GitHub Pages
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     personal_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }} # 使用 PAT 认证
+      #     publish_dir: ./public                               # 指定生成的静态文件目录
