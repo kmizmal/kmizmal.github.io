@@ -1,7 +1,13 @@
 ---
 title: Steam个人资料美化
+Translate_title: Steam's-personal-data-beautification
+comments: true
+tags:
+  - steam
+published: true
+layout: post
 date: 2025-03-21 07:19:51
-tags: steam
+updated: 2025-03-26 20:59:22
 ---
 
 [创意工坊链接](https://steamcommunity.com/workshop/edititem/570/11)
@@ -10,15 +16,11 @@ tags: steam
 艺术作品
 js改图
 ```
-$J('#image_width').val(1000).attr('id', '');
-$J('#image_height').val(1).attr('id', '');
+$J('#image_width').val(1000).attr('id',''),$J('#image_height').val(1).attr('id','');
 ```
 隐藏作品名称
 ```
-v_trim = _ => {
-  return _;
-};
-$J('#title').val(' \n' + Array.from(Array(126), _ => '\t').join(''));
+v_trim=_=>{return _},$J('#title').val(' \n'+Array.from(Array(126),_=>'\t').join(''));
 ```
 移除勋章
 ```
@@ -40,10 +42,10 @@ badgeid: badgeid
 
 }
 ```
-![tip]
-# 未完待续
+
 
 > 参考资料
 >- https://blog.yuki.sh/posts/daf9288c81ba/
 >- https://bili33.top/posts/Steam-Artwork/
 >- https://nanodaovo.github.io/2024/03/19/steam_background_beautify/
+>- https://steamcommunity.com/sharedfiles/filedetails/?id=3410802985
