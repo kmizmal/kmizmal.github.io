@@ -3,7 +3,8 @@ title: Steam个人资料美化
 Translate_title: Steam's-personal-data-beautification
 comments: true
 tags:
-  - steam
+  - Steam
+  - 知识
 published: true
 layout: post
 date: 2025-03-21 07:19:51

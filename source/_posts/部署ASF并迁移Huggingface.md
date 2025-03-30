@@ -4,6 +4,8 @@ Translate_title: Deployment-of-ASF-and-relocation-of-Huggingface
 comments: true
 tags:
   - 迁移
+  - 教程
+  - Huggingface
 published: true
 layout: post
 date: 2024-10-25 08:23:12

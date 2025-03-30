@@ -2,7 +2,7 @@
 title: puppeteer Chromium 启动失败
 Translate_title: puppeter-Chromium-start-failed
 comments: true
-tags: []
+tags: 知识
 published: true
 layout: post
 date: 2025-03-26 19:22:39

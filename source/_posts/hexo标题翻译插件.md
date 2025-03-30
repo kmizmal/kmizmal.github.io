@@ -2,7 +2,8 @@
 title: hexo标题翻译插件
 Translate_title: hexo-heading-translation-plugin
 comments: true
-tags: []
+tags:
+  - 工具
 published: true
 layout: post
 date: 2025-01-04 11:43:58
