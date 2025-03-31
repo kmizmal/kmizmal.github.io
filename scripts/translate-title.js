@@ -38,10 +38,10 @@ function saveCache(cache) {
 }
 // 处理翻译结果并缓存
 function handleTranslation(data, sanitizedTitle, translatedTitle) {
-
+    let cache = loadCache(); // 读取缓存
     // 如果翻译发生变化，更新缓存
     if (translatedTitle !== sanitizedTitle) {
-        hexo.log.success("成功翻译将", sanitizedTitle, "翻译为", translatedTitle);
+        hexo.log.info(`成功翻译将${sanitizedTitle}翻译为${translatedTitle}`);
         data.Translate_title = translatedTitle.replace(/\s+/g, "-");
         cache[sanitizedTitle] = data.Translate_title; // 缓存翻译结果
         saveCache(cache); // 写入文件缓存
