@@ -1,6 +1,5 @@
 ---
 title: 在Linux系统上安装使用mihomo
-Translate_title: Install-mihomo-on-Linux
 comments: true
 tags: 
   - 日记

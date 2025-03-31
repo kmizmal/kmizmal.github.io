@@ -1,18 +1,59 @@
 'use strict';
 
-// 如果 hexo 尚未定义，则初始化 hexo 对象
-var hexo = hexo || {};
 var config = hexo.config; // 获取 Hexo 配置
-const front = require('hexo-front-matter'); // 用于解析和生成 Front Matter
 const fs = require('hexo-fs'); // 用于文件操作
+const path = require("path");
 
-hexo.extend.filter.register('before_post_render', async function (data) {
+const DATA_DIR = path.join(hexo.source_dir, "_data"); // Hexo的source/_data目录
+const CACHE_FILE = path.join(DATA_DIR, "translation_cache.json");
 
-    if (data.Translate_title !== undefined) {
-        console.log(`\x1b[32m${data.title}\x1b[0m`,"存在翻译标题，少女为你跳过");//如果标题已经翻译过了，就跳过并输出日志
-        return data;
+function initDataDir() {
+    if (!fs.existsSync(DATA_DIR)) {
+        fs.mkdirsSync(DATA_DIR); // 使用 hexo-fs 的递归创建目录
+        hexo.log.info(`\x1b[33mฅ(^◕ᴥ◕^)ฅ 成功召唤数据小屋 → \x1b[4m${DATA_DIR}\x1b[0m\x1b[33m 喵！\x1b[0m`);
+    }
+}
+// 读取缓存
+function loadCache() {
+
+    if (fs.existsSync(CACHE_FILE)) {
+        try {
+            initDataDir(); // 确保目录存在
+            return JSON.parse(fs.readFileSync(CACHE_FILE, { encoding: 'utf8' }) || '{}');
+        } catch (err) {
+            hexo.log.error('\x1b[41m(>﹏<) 缓存文件读取出问题了喵 →\x1b[0m', err);
+            return {};
+        }
+    }
+    return {};
+}
+// 写入缓存
+function saveCache(cache) {
+    try {
+        fs.writeFileSync(CACHE_FILE, JSON.stringify(cache, null, 2), 'utf-8');
+        hexo.log.info(`\x1b[32m(^∇^) 缓存保存成功！共存储 ${Object.keys(cache).length} 个翻译记忆啦~`);
+    } catch (err) {
+        hexo.log.warn('\x1b[43m(,,・﹏・,,) 缓存保存失败，少女紧急修复中 →\x1b[0m', err);
+    }
+}
+// 处理翻译结果并缓存
+function handleTranslation(data, sanitizedTitle, translatedTitle) {
+
+    // 如果翻译发生变化，更新缓存
+    if (translatedTitle !== sanitizedTitle) {
+        hexo.log.success("成功翻译将", sanitizedTitle, "翻译为", translatedTitle);
+        data.Translate_title = translatedTitle.replace(/\s+/g, "-");
+        cache[sanitizedTitle] = data.Translate_title; // 缓存翻译结果
+        saveCache(cache); // 写入文件缓存
+    } else {
+        hexo.log.info(`\x1b[37m(´•︵•\`) 标题没有变化，\x1b[3m『${sanitizedTitle}』\x1b[0m\x1b[37m 少女托腮发呆中...\x1b[0m`);
     }
 
+    return data;
+}
+
+hexo.extend.filter.register('before_post_render', async function (data) {
+    let cache = loadCache(); // 读取缓存
     const sanitizedTitle = data.title
         .replace(/[^\w\s\u4e00-\u9fa5]/g, "") // 移除特殊字符
         .replace(/\s+/g, "-");
@@ -20,49 +61,25 @@ hexo.extend.filter.register('before_post_render', async function (data) {
     //console.log("检测到默认语言为:", config.language);
     const languageCode = config.language.split('-')[0];
     //console.log("转换为通用语言代码", languageCode);
-    const translatedTitle = await Translate(sanitizedTitle,languageCode);
 
-
-    if (translatedTitle != sanitizedTitle) {
-        console.log("成功翻译将",sanitizedTitle,"翻译为",translatedTitle);
-        data.Translate_title = translatedTitle.replace(/\s+/g, "-");
-        await rewrite(data);// 重写文件
-    } else {
-        console.log(translatedTitle, "标题没有变化，少女陷入沉思");
+    // 如果缓存已存在该标题，直接返回
+    if (cache[sanitizedTitle]) {
+        hexo.log.info(`\x1b[36mฅ^•ﻌ•^ฅ 从缓存堆里刨出闪闪发光的 \x1b[1m\x1b[4m📖『${sanitizedTitle}』\x1b[0m\x1b[36m ฅ( ̳• ·̫ • ̳)  \x1b[32m～➡️～  \x1b[35m✨${cache[sanitizedTitle]}✨\x1b[0m\x1b[36m 喵喵妙手get！(≧ω≦)ゞ\x1b[0m`);
+        data.Translate_title = cache[sanitizedTitle];
+        return data;
     }
-    return data;
+    const translatedTitle = await Translate(sanitizedTitle, languageCode);
+
+    return handleTranslation(data, sanitizedTitle, translatedTitle);
 
 }, 5);
-async function rewrite(data) {
-    // 清理 Front Matter 数据，只保留需要的字段
-    const cleanedData = cleanFrontMatter(data);
-
-    // 构建新的 YAML Front Matter
-    const updatedFrontMatter = front.stringify(cleanedData);
-
-    // 确保没有多余的 `---` 分隔符
-    const formattedFrontMatter = `---\n${updatedFrontMatter.trim()}`;
-
-    // 拼接完整的文件内容
-    const newContent = `${formattedFrontMatter}\n${data.content}`;
-
-    try {
-        // 写回 `.md` 文件
-        await fs.writeFile(data.full_source, newContent, 'utf8');
-        //console.log(`文件成功写入到 ${data.full_source}`);
-    } catch (error) {
-        console.error("文件写不回去了", error);
-    }
-
-    return data;
-}
 
 // 翻译函数，调用 LibreTranslate API 进行翻译
 const translate_api_url = "https://asfag654-libretranslate.hf.space/translate";
-async function Translate(title,source) {
+async function Translate(title, source) {
 
     try {
-        console.log("少女正在努力翻译:", title);
+        hexo.log.info(`\x1b[34m(。-ω-)zzz 少女奋笔疾书翻译中：\x1b[3m『${title}』\x1b[0m\x1b[34m ...`);
         const res = await fetch(translate_api_url, {
             method: "POST",
             body: JSON.stringify({
@@ -78,38 +95,11 @@ async function Translate(title,source) {
         if (translateData?.translatedText) {
             return translateData.translatedText;
         } else {
-            console.error("少女为你痛哭，翻译api抽风了", translateData);
+            hexo.log.error("\x1b[45m(;´༎ຶД༎ຶ`) 少女为你痛哭，翻译API抽风啦！响应数据 →\x1b[0m", translateData);
             return title;
         }
     } catch (error) {
-        console.error("少女为你痛哭，翻译api失效了", error);
+        hexo.log.error("\x1b[45m(つД\`) 翻译API连接失败，少女哭哭... 错误信息 →\x1b[0m", error);
         return title;
     }
-}
-
-function cleanFrontMatter(data) {
-    const cleanedData = {};  // 创建一个新的对象，只保留需要的字段
-
-    // 保留必要的字段
-    if (data.title) cleanedData.title = data.title;
-    if (data.Translate_title) cleanedData.Translate_title = data.Translate_title;
-    if (data.date) cleanedData.date = new Date(data.date);
-    if (data.updated) cleanedData.updated = new Date(data.updated);
-    if (data.comments !== undefined) cleanedData.comments = data.comments;
-    if (data.pinned !== undefined) cleanedData.pinned = data.pinned;
-    if (data.tags && Array.isArray(data.tags.data)) {
-
-        cleanedData.tags = data.tags.data.map(tag => tag.name);
-        //console.log("标签:", cleanedData.tags);// 提取标签的名称
-    }
-    if (data.categories && Array.isArray(data.categories.data) && data.categories.data.length > 0) {
-        cleanedData.categories = data.categories.data.map(category => category.name);
-    }
-    if (data.excerpt) cleanedData.excerpt = data.excerpt;
-    if (data.disableNunjucks !== undefined) cleanedData.disableNunjucks = data.disableNunjucks;
-    if (data.lang) cleanedData.lang = data.lang;
-    if (data.published !== undefined) cleanedData.published = data.published;
-    if (data.layout) cleanedData.layout = data.layout;
-
-    return cleanedData;  // 返回清理后的数据
 }
