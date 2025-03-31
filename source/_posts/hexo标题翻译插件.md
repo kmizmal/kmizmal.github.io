@@ -35,11 +35,5 @@ curl -O https://github.com/kmizmal/hexo-translate-title/releases/download/releas
 
 在`translate-title.js`的 52 行`translate_api_url`后填入你自己搭建的[libretranslate](https://github.com/LibreTranslate/LibreTranslate)接口
 
-### 可能遇到的问题
 
-##### Front-Matter 误杀
-
-在写这个脚本的时候*Front-Matter*多次抽风，~~气急败坏之下~~我直接引入了白名单，可以在脚本 85 行看到白名单列表
-
-自己改看着
 ~~或者提交 issue~~
