@@ -1,0 +1,49 @@
+<div class=article><div><h1>Git仓库操作</h1></div><div class=info><span class=date><span class=icon><i class="fa-solid fa-calendar fa-fw"></i></span> 2025/4/3 <span class=icon><i class="fa-solid fa-wand-magic-sparkles"></i></span> 2025/4/4 </span><span class=tags><span class=icon><i class="fa-solid fa-tags fa-fw"></i> </span><span class=tag><a href=/tags/%E7%AC%94%E8%AE%B0/ style=color:#00a596>笔记 </a></span><span class=tag><a href=/tags/%E7%9F%A5%E8%AF%86/ style=color:#03a9f4>知识</a></span></span></div><div class=content v-pre><p>以下是 Git 常用仓库操作命令及示例文档：</p><hr><h3 id=1-初始化仓库><a href=#1-初始化仓库 class=headerlink title="1. 初始化仓库"></a><strong>1. 初始化仓库</strong></h3><pre><code class=language-bash>git init
+</code></pre><ul><li><strong>说明</strong>：将当前目录初始化为 Git 仓库。</li><li><strong>示例</strong>：<pre><code class=language-bash>mkdir my-project &amp;&amp; cd my-project
+git init
+</code></pre></li></ul><hr><span id=more></span><h3 id=2-克隆远程仓库><a href=#2-克隆远程仓库 class=headerlink title="2. 克隆远程仓库"></a><strong>2. 克隆远程仓库</strong></h3><pre><code class=language-bash>git clone &lt;远程仓库地址&gt;
+</code></pre><ul><li><strong>说明</strong>：克隆远程仓库到本地。</li><li><strong>示例</strong>：<pre><code class=language-bash>git clone https://github.com/user/repo.git
+git clone git@github.com:user/repo.git  # SSH 方式
+</code></pre></li></ul><hr><h3 id=3-关联远程仓库><a href=#3-关联远程仓库 class=headerlink title="3. 关联远程仓库"></a><strong>3. 关联远程仓库</strong></h3><pre><code class=language-bash>git remote add &lt;远程仓库别名&gt; &lt;远程仓库地址&gt;
+</code></pre><ul><li><strong>说明</strong>：将本地仓库与远程仓库关联。</li><li><strong>示例</strong>：<pre><code class=language-bash>git remote add origin https://github.com/user/repo.git
+</code></pre></li></ul><hr><h3 id=4-查看远程仓库信息><a href=#4-查看远程仓库信息 class=headerlink title="4. 查看远程仓库信息"></a><strong>4. 查看远程仓库信息</strong></h3><pre><code class=language-bash>git remote -v                   # 查看所有远程仓库地址
+git remote show &lt;远程仓库别名&gt;  # 查看某个远程仓库详细信息
+</code></pre><ul><li><strong>示例</strong>：<pre><code class=language-bash>git remote -v
+git remote show origin
+</code></pre></li></ul><hr><h3 id=5-拉取远程仓库更新><a href=#5-拉取远程仓库更新 class=headerlink title="5. 拉取远程仓库更新"></a><strong>5. 拉取远程仓库更新</strong></h3><pre><code class=language-bash>git pull &lt;远程仓库别名&gt; &lt;分支名&gt;  # 拉取并合并代码
+git fetch &lt;远程仓库别名&gt;         # 仅获取更新不合并
+</code></pre><ul><li><strong>示例</strong>：<pre><code class=language-bash>git pull origin main       # 拉取并合并 origin/main 分支
+git fetch origin           # 获取 origin 仓库的所有更新
+</code></pre></li></ul><hr><h3 id=6-推送本地代码到远程><a href=#6-推送本地代码到远程 class=headerlink title="6. 推送本地代码到远程"></a><strong>6. 推送本地代码到远程</strong></h3><pre><code class=language-bash>git push &lt;远程仓库别名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;
+</code></pre><ul><li><strong>示例</strong>：<pre><code class=language-bash>git push origin main              # 推送本地 main 分支到 origin/main
+git push origin feature:dev       # 推送本地 feature 分支到远程 dev 分支
+git push -u origin main           # 首次推送并关联上游分支（后续可直接 `git push`）
+</code></pre></li></ul><hr><h3 id=7-删除远程分支><a href=#7-删除远程分支 class=headerlink title="7. 删除远程分支"></a><strong>7. 删除远程分支</strong></h3><pre><code class=language-bash>git push &lt;远程仓库别名&gt; --delete &lt;远程分支名&gt;
+</code></pre><ul><li><strong>示例</strong>：<pre><code class=language-bash>git push origin --delete old-branch
+</code></pre></li></ul><hr><h3 id=8-添加多个远程仓库><a href=#8-添加多个远程仓库 class=headerlink title="8. 添加多个远程仓库"></a><strong>8. 添加多个远程仓库</strong></h3><pre><code class=language-bash>git remote add &lt;新别名&gt; &lt;新仓库地址&gt;
+</code></pre><ul><li><strong>示例</strong>（同时关联 GitHub 和 Gitee）：<pre><code class=language-bash>git remote add github https://github.com/user/repo.git
+git remote add gitee https://gitee.com/user/repo.git
+</code></pre></li></ul><hr><h3 id=9-重命名远程仓库别名><a href=#9-重命名远程仓库别名 class=headerlink title="9. 重命名远程仓库别名"></a><strong>9. 重命名远程仓库别名</strong></h3><pre><code class=language-bash>git remote rename &lt;旧别名&gt; &lt;新别名&gt;
+</code></pre><ul><li><strong>示例</strong>：<pre><code class=language-bash>git remote rename origin upstream
+</code></pre></li></ul><hr><h3 id=10-删除远程仓库关联><a href=#10-删除远程仓库关联 class=headerlink title="10. 删除远程仓库关联"></a><strong>10. 删除远程仓库关联</strong></h3><pre><code class=language-bash>git remote remove &lt;远程仓库别名&gt;
+</code></pre><ul><li><strong>示例</strong>：<pre><code class=language-bash>git remote remove origin
+</code></pre></li></ul><hr><h3 id=11-清理无效远程分支引用><a href=#11-清理无效远程分支引用 class=headerlink title="11. 清理无效远程分支引用"></a><strong>11. 清理无效远程分支引用</strong></h3><pre><code class=language-bash>git remote prune &lt;远程仓库别名&gt;
+</code></pre><ul><li><strong>说明</strong>：删除本地已失效的远程分支引用。</li><li><strong>示例</strong>：<pre><code class=language-bash>git remote prune origin
+</code></pre></li></ul><hr><h3 id=12-推送所有标签到远程><a href=#12-推送所有标签到远程 class=headerlink title="12. 推送所有标签到远程"></a><strong>12. 推送所有标签到远程</strong></h3><pre><code class=language-bash>git push &lt;远程仓库别名&gt; --tags
+</code></pre><ul><li><strong>示例</strong>：<pre><code class=language-bash>git push origin --tags
+</code></pre></li></ul><hr><h3 id=常用场景示例><a href=#常用场景示例 class=headerlink title=常用场景示例></a><strong>常用场景示例</strong></h3><h4 id=场景-1：克隆仓库并推送修改><a href=#场景-1：克隆仓库并推送修改 class=headerlink title="场景 1：克隆仓库并推送修改"></a><strong>场景 1：克隆仓库并推送修改</strong></h4><pre><code class=language-bash>git clone https://github.com/user/repo.git
+cd repo
+# 修改代码后提交
+git add .
+git commit -m &quot;Update code&quot;
+git push origin main
+</code></pre><h4 id=场景-2：关联已有本地仓库到远程><a href=#场景-2：关联已有本地仓库到远程 class=headerlink title="场景 2：关联已有本地仓库到远程"></a><strong>场景 2：关联已有本地仓库到远程</strong></h4><pre><code class=language-bash>cd existing-project
+git init
+git add .
+git commit -m &quot;Initial commit&quot;
+git remote add origin https://github.com/user/repo.git
+git push -u origin main
+</code></pre><h4 id=场景-3：同步多个远程仓库><a href=#场景-3：同步多个远程仓库 class=headerlink title="场景 3：同步多个远程仓库"></a><strong>场景 3：同步多个远程仓库</strong></h4><pre><code class=language-bash># 同时推送到 GitHub 和 Gitee
+git push github main
+git push gitee main
+</code></pre><hr><p>通过以上命令，你可以完成 Git 仓库的日常操作。如需更高级功能（如子模块、Hook 等），可参考 Git 官方文档。</p></div></div>
