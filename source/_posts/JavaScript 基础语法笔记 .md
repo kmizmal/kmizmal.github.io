@@ -2,7 +2,9 @@
 title: JavaScript 基础语法笔记
 Translate_title: Send-the-stone-again
 comments: true
-tags: 知识
+tags: 
+  - 知识
+  - 笔记
 published: true
 layout: post
 date: 2025-03-06 21:11:06

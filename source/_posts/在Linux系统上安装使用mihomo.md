@@ -1,7 +1,7 @@
 ---
 title: 在Linux系统上安装使用mihomo
 comments: true
-tags: 
+tags:
   - 日记
   - 教程
 published: true
@@ -23,7 +23,7 @@ cd mihomo
 ```
 uname -m
 ```
-
+<!-- more -->
 如果是 x86_64（AMD64/Intel 64）架构（大多数 PC/服务器）：
 下载 x86_64.rpm（AMD64 适用于 Intel 和 AMD）。
 
@@ -95,4 +95,3 @@ sysctl -p
 > - https://12520.net/archives/debian-mihomo-clash.mate-webui
 > - https://wiki.metacubex.one/
 > - https://zfxt.top/posts/70b7a805/
-
