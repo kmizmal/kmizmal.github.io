@@ -21,21 +21,30 @@ updated: 2025-01-08 18:07:57
 ```dos
 @echo off
 chcp 65001
-
 setlocal enabledelayedexpansion
-set ipAddress=
 
-:: 获取第 24 行 IP 地址
-for /f "skip=23 tokens=*" %%A in ('ipconfig') do (
-    set ipAddress=%%A
-    goto :found
+:: 获取默认网关 IP（通常是热点设备的 IP）
+for /f "tokens=3" %%a in ('route print ^| findstr "0.0.0.0"') do (
+    set gatewayIP=%%a
+    goto connect
 )
 
-:: 替换为你实际打开的端口
-echo 第 24 行：!ipAddress!
-adb connect !ipAddress!:6666
-:: 自行替换scrcpy路径
-"E:\study\bash\adb\scrcpy-win64-v3.1\scrcpy.exe" --pause-on-exit=if-error --audio-source=playback --audio-dup --keyboard=uhid
+:connect
+echo 尝试连接设备：!gatewayIP!:6666 ...
+adb connect !gatewayIP!:6666 >nul 2>&1
 
+:: 检查是否连接成功
+for /f %%a in ('adb devices') do (
+    echo %%a | find "!gatewayIP!:6666" >nul && goto launch
+)
+
+echo 连接失败，请确认设备已开启 6666 端口并已授权 ADB 连接。
 pause
+exit /b
+
+:launch
+echo 连接成功，正在启动 scrcpy...
+"E:\study\bash\adb\scrcpy-win64-v3.1\scrcpy.exe" --pause-on-exit=if-error --audio-source=playback --audio-dup --keyboard=uhid
+pause
+
 ```
