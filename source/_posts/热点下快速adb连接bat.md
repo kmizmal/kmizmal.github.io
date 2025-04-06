@@ -11,7 +11,7 @@ updated: 2025-01-08 18:07:57
 
 我觉得[scrcpy](https://github.com/Genymobile/scrcpy)挺好用的，但是我刷了[box4](https://github.com/Genymobile/scrcpy)走系统级代理导致 usb 网络共享总是出现奇奇怪怪的 bug
 
-但是不知道为什么一加开热点每次网关 ip 都会变，
+~~但是不知道为什么一加开热点每次网关 ip 都会变，~~(刷[SoftApHelPer](https://github.com/XhyEax/SoftApHelper)解决了)
 
 索性在 gpt 的帮助下写了这个脚本，~~开始是想用`find`匹配的，但是我处理不好 ipv6 那个地址处理捣乱，，所以脚本里面是硬编码了网关那一行~~  
 用了几天好像没什么问题就发出来当备份了
