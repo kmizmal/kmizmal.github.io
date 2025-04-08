@@ -9,7 +9,7 @@ updated: 2024-10-26 22:29:00
 ## 欢迎来到本站
 
 这里是`zmal`/`紫沐`/`梦断忆`,胡言乱语的地方
-![原神卡片](https://hoyocard.qhy04.com/gs/rand/288292888.png)
+<!-- ![原神卡片](https://hoyocard.qhy04.com/gs/rand/288292888.png) -->
 ### 下面是紫沐的联系方式
 
 ```QQ
