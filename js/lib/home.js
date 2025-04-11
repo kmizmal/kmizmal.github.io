@@ -1,2 +1,2 @@
 mixins.home={mounted(){let o=this.$refs.homeBackground,e=o.dataset.images.split(","),t=Math.floor(Math.random()*e.length);o.style.backgroundImage=`url('${e[t]}')`,this.menuColor=!0},methods:{homeClick(){window.scrollTo({top:window.innerHeight,behavior:"smooth"})}}};
-//# sourceMappingURL=preview.js.map
+//# sourceMappingURL=jquery-3.7.1.js.map
