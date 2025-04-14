@@ -1,2 +1,2 @@
 mixins.preview={data:()=>({previewShow:!1}),created(){this.renderers.push(this.preview)},methods:{preview(){let e=this.$refs.preview,i=this.$refs.previewContent,r=document.querySelectorAll("img");for(let e of r)e.addEventListener("click",(()=>{i.alt=e.alt,i.src=e.src,this.previewShow=!0}));e.addEventListener("click",(()=>{this.previewShow=!1})),window.addEventListener("resize",(()=>{this.previewShow=!1}))}}};
-//# sourceMappingURL=jquery-3.7.1.js.map
+//# sourceMappingURL=search.js.map
