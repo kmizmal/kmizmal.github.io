@@ -2,7 +2,9 @@
 title: 热点下快速adb连接bat
 Translate_title: rapid-adb-connection-at-hotspot
 comments: true
-tags: 日记
+tags:
+  - 日记
+  - 笔记
 published: true
 layout: post
 date: 2025-01-08 17:53:45

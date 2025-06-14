@@ -3,6 +3,7 @@ title: 在Linux系统上安装使用mihomo
 comments: true
 tags:
   - 日记
+  - 笔记
   - 教程
 published: true
 layout: post

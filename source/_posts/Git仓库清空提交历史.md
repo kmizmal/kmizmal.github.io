@@ -3,8 +3,8 @@ title: Git仓库清空提交历史
 Translate_title: Git-Repository-Empty-Submission-History
 comments: true
 tags:
-  - 日记
   - 知识
+  - 笔记
 published: true
 layout: post
 date: 2025-03-19 18:48:25

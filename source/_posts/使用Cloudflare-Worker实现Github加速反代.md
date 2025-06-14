@@ -3,6 +3,7 @@ title: 使用Cloudflare Workers实现Github加速反代
 date: 2025-06-12 13:03:32
 tags:
   - 笔记
+  - 服务
 ---
 虽然cf在国内也会收到gfw的影响，但相对来说比GitHub好好多，故在赛博大善人的workers服务上部署了一个反代服务，主要是给朋友们用及特殊情况应急
 <!-- more -->
