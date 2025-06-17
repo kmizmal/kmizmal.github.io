@@ -1,0 +1,62 @@
+name: Deploy Hexo Blog
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'source/**'
+      - 'themes/**'
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          ref: main
+          submodules: true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: |
+          npm install -g pnpm hexo-cli  # 全局安装 pnpm
+          pnpm config set allow-build-scripts true  #全局信任所有构建脚本
+          pnpm install             # 安装项目依赖
+          pnpm install hexo-minify --save #项目压缩
+          #pnpm install --save hexo-tag-bilibili #b站视频        
+          #pnpm install hexo-autoprefixer --save #css兼容性
+          pnpm add gifsicle
+          pnpm rebuild
+
+      - name: Generate static files
+        run: |
+          hexo generate
+
+      - name: Cache pnpm store
+        uses: actions/cache@v4
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+              ${{ runner.os }}-pnpm-
+        
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          cname: blog.zmal.top
+          keep_files: true
+
+      # - name: Deploy to GitHub Pages
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     personal_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }} # 使用 PAT 认证
+      #     publish_dir: ./public                               # 指定生成的静态文件目录
