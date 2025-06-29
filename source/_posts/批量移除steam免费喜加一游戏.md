@@ -2,11 +2,11 @@
 title: 批量移除steam免费喜加一游戏
 date: 2025-06-24 21:53:04
 tags:
-  - steam
+  - Steam
   - 笔记
 ---
 之前年轻不懂事，在挂卡ASF的都很好顺手开了自动入库免费游戏，刚开始看着我仓库里越来越多的游戏还挺开心的。直到后面找不到我想玩的游戏才发现不对劲。  大量免费游戏占据了我的库![image](https://img.zmal.top/20250624/image.7eh1jcso7i.png)
-
+<!-- more -->
 受 https://blog.csdn.net/qq_43479164/article/details/121252752 的启发再拿ds和gpt优化了一点点写出了下面这个js脚本
 
 ```
