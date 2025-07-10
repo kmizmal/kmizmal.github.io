@@ -33,7 +33,7 @@
     "hexo-tag-bilibili": "^0.3.1",
     "pnpm": "^10.12.4",
     "sass": "^1.89.2",
-    "sharp": "^0.34.2"
+    "sharp": "^0.34.3"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
