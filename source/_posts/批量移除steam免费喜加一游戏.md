@@ -9,7 +9,7 @@ tags:
 <!-- more -->
 受 https://blog.csdn.net/qq_43479164/article/details/121252752 的启发再拿ds和gpt优化了一点点写出了下面这个js脚本
 
-```
+```js
 (async () => {
     // 1. 工具函数：延迟执行
     function delay(ms) {

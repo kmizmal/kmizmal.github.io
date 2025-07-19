@@ -16,36 +16,36 @@ updated: 2025-03-20 17:45:17
 
 # 1. 创建一个新的孤立分支
 
-```
+```bash
 git checkout --orphan new_branch
 ```
 
 # 2. 添加所有文件
 
-```
+```bash
 git add .
 ```
 
 # 3. 提交新的初始提交
 
-```
+```bash
 git commit -m "初始化"
 ```
 
 # 4. 删除旧的 main（或 master）分支
 
-```
+```bash
 git branch -D main  # 如果原分支是 master，就改成 master
 ```
 
 # 5. 将新分支改名为 main（或 master）
 
-```
+```bash
 git branch -m main
 ```
 
 # 6. 强制推送新历史（覆盖旧历史）
 
-```
+```bash
 git push -f origin main
 ```
