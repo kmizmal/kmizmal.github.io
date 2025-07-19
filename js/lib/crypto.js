@@ -1,2 +1,28 @@
-mixins.crypto={data:()=>({crypto:"",cryptoStatus:""}),watch:{crypto(t){let r=this.$refs.crypto,s=this.$refs.content,{encrypted:c,shasum:e}=r.dataset;try{let r=CryptoJS.AES.decrypt(c,t).toString(CryptoJS.enc.Utf8);CryptoJS.SHA256(r).toString()===e?(this.cryptoStatus="success",s.innerHTML=r,this.render()):this.cryptoStatus="failure"}catch{this.cryptoStatus="failure"}}}};
-//# sourceMappingURL=search.js.map
+mixins.crypto = {
+  data() {
+    return {
+      crypto: "",
+      cryptoStatus: ""
+    };
+  },
+  watch: {
+    crypto(value) {
+      let input = this.$refs.crypto,
+        content = this.$refs.content;
+      let {
+        encrypted,
+        shasum
+      } = input.dataset;
+      try {
+        let decrypted = CryptoJS.AES.decrypt(encrypted, value).toString(CryptoJS.enc.Utf8);
+        if (CryptoJS.SHA256(decrypted).toString() === shasum) {
+          this.cryptoStatus = "success";
+          content.innerHTML = decrypted;
+          this.render();
+        } else this.cryptoStatus = "failure";
+      } catch {
+        this.cryptoStatus = "failure";
+      }
+    }
+  }
+};

@@ -1,2 +1,162 @@
-$(document).ready(function(){const e=$("<div id='image-preview'></div>").appendTo("#main"),n=$("<img>").appendTo(e);let t=0,o=1,c=!1,s=0,a=0,r=0,i=0,u=0,m=0,f=null;const p=[];function g(c,s){n.attr("src",c).on("error",()=>alert("图片加载失败")),t=s,o=1,n.css({transform:`scale(${o})`,position:"absolute"}),e.fadeIn(300),$(document).on("keydown",k)}function l(){e.fadeOut(300),$(document).off("keydown",k)}function d(e){const c=p.length;if(0===c)return;o=1,t=(t+e+c)%c;const s=$(p[t]).attr("src");n.attr("src",s);const a=$(p[(t+1)%c]).attr("src"),r=$(p[(t-1+c)%c]).attr("src");(new Image).src=a,(new Image).src=r}let w;function v(e){clearTimeout(w),w=setTimeout(()=>{o=Math.max(.1,Math.min(3,o+e)),n.css({transform:`scale(${o})`})},50)}function b(e){c&&(u=e.pageX-s,m=e.pageY-a,f||(f=requestAnimationFrame(()=>{n.css({left:`${r+u}px`,top:`${i+m}px`}),f=null})))}function h(){c=!1,n.css("cursor","grab"),$(document).off("mousemove",b),$(document).off("mouseup",h)}function k(n){if(e.is(":visible"))switch(n.key){case"Escape":l();break;case"ArrowLeft":case"ArrowUp":d(-1);break;case"ArrowRight":case"ArrowDown":d(1);break;case"+":v(.1);break;case"-":v(-.1)}}const A=$(".content img:not(#image-preview img, .footer img)");$("div.content").on("click","img:not(#image-preview img)",function(e){e.stopPropagation();const n=A.index(this);p.splice(0,p.length,...A),g(this.src,n)}),e.on("click",function(e){e.target!==n[0]&&l()}),$(window).on("resize",l),e.on("wheel",function(e){e.preventDefault();v(e.originalEvent.deltaY>0?-.1:.1)}),e.on("mousedown",function(e){0!==e.pageX&&0!==e.pageY?(c=!0,s=e.pageX,a=e.pageY,r=parseFloat(n.css("left"))||0,i=parseFloat(n.css("top"))||0,n.css("cursor","grabbing"),$(document).on("mousemove",b),$(document).on("mouseup",h),e.preventDefault()):l()})});
-//# sourceMappingURL=search.js.map
+$(document).ready(function () {
+  const $preview = $("<div id='image-preview'></div>").appendTo("#main");
+  const $img = $("<img>").appendTo($preview);
+  let currentImgIndex = 0;
+  let scale = 1;
+  let isDragging = false;
+  let startX = 0;
+  let startY = 0;
+  let imgStartLeft = 0;
+  let imgStartTop = 0;
+  let dx = 0;
+  let dy = 0;
+  let animationFrameId = null;
+  const images = [];
+
+  // 初始化图片预览
+  function initPreview(src, index) {
+    $img.attr("src", src).on("error", () => alert("图片加载失败"));
+    currentImgIndex = index;
+    scale = 1;
+    $img.css({
+      transform: `scale(${scale})`,
+      position: "absolute"
+    });
+    $preview.fadeIn(300);
+    enableKeyboardShortcuts();
+  }
+
+  // 关闭图片预览
+  function closePreview() {
+    $preview.fadeOut(300);
+    disableKeyboardShortcuts();
+  }
+
+  // 切换图片
+  function switchImage(direction) {
+    const total = images.length;
+    if (total === 0) return;
+    scale = 1;
+    currentImgIndex = (currentImgIndex + direction + total) % total;
+    const nextSrc = $(images[currentImgIndex]).attr("src");
+    $img.attr("src", nextSrc);
+
+    // 预加载相邻图片
+    const preloadNext = $(images[(currentImgIndex + 1) % total]).attr("src");
+    const preloadPrev = $(images[(currentImgIndex - 1 + total) % total]).attr("src");
+    new Image().src = preloadNext;
+    new Image().src = preloadPrev;
+  }
+
+  // 缩放图片
+  let zoomTimeout;
+  function zoomImage(delta) {
+    clearTimeout(zoomTimeout);
+    zoomTimeout = setTimeout(() => {
+      scale = Math.max(0.1, Math.min(3, scale + delta));
+      $img.css({
+        transform: `scale(${scale})`
+      });
+    }, 50);
+  }
+
+  // 开始拖拽
+  function startDrag(e) {
+    if (e.pageX !== 0 && e.pageY !== 0) {
+      isDragging = true;
+      startX = e.pageX;
+      startY = e.pageY;
+      imgStartLeft = parseFloat($img.css("left")) || 0;
+      imgStartTop = parseFloat($img.css("top")) || 0;
+      $img.css("cursor", "grabbing");
+      $(document).on("mousemove", dragImage);
+      $(document).on("mouseup", stopDrag);
+      e.preventDefault();
+    } else {
+      closePreview();
+    }
+  }
+
+  // 拖拽图片
+  function dragImage(e) {
+    if (!isDragging) return;
+    dx = e.pageX - startX;
+    dy = e.pageY - startY;
+    if (!animationFrameId) {
+      animationFrameId = requestAnimationFrame(() => {
+        $img.css({
+          left: `${imgStartLeft + dx}px`,
+          top: `${imgStartTop + dy}px`
+        });
+        animationFrameId = null;
+      });
+    }
+  }
+
+  // 停止拖拽
+  function stopDrag() {
+    isDragging = false;
+    $img.css("cursor", "grab");
+    $(document).off("mousemove", dragImage);
+    $(document).off("mouseup", stopDrag);
+  }
+
+  // 启用键盘快捷键
+  function enableKeyboardShortcuts() {
+    $(document).on("keydown", handleKeydown);
+  }
+
+  // 禁用键盘快捷键
+  function disableKeyboardShortcuts() {
+    $(document).off("keydown", handleKeydown);
+  }
+
+  // 键盘事件处理
+  function handleKeydown(e) {
+    if ($preview.is(":visible")) {
+      switch (e.key) {
+        case "Escape":
+          closePreview();
+          break;
+        case "ArrowLeft":
+        case "ArrowUp":
+          switchImage(-1);
+          break;
+        case "ArrowRight":
+        case "ArrowDown":
+          switchImage(1);
+          break;
+        case "+":
+          zoomImage(0.1);
+          break;
+        case "-":
+          zoomImage(-0.1);
+          break;
+        default:
+          break;
+      }
+    }
+  }
+
+  // 绑定缩略图点击事件
+  const $contentImages = $(".content img:not(#image-preview img, .footer img)");
+  $("div.content").on("click", "img:not(#image-preview img)", function (e) {
+    e.stopPropagation();
+    const index = $contentImages.index(this);
+    images.splice(0, images.length, ...$contentImages);
+    initPreview(this.src, index);
+  });
+
+  // 预览框交互
+  $preview.on("click", function (e) {
+    if (e.target === $img[0]) return;
+    closePreview();
+  });
+  $(window).on("resize", closePreview);
+  $preview.on("wheel", function (e) {
+    e.preventDefault();
+    const delta = e.originalEvent.deltaY > 0 ? -0.1 : 0.1;
+    zoomImage(delta);
+  });
+  $preview.on("mousedown", startDrag);
+});
