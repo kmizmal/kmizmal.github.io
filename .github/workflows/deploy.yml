@@ -29,9 +29,6 @@ jobs:
           npm install -g pnpm hexo-cli  # 全局安装 pnpm
           pnpm config set allow-build-scripts true  #全局信任所有构建脚本
           pnpm install             # 安装项目依赖
-          pnpm install hexo-minify --save #项目压缩
-          #pnpm install --save hexo-tag-bilibili #b站视频        
-          #pnpm install hexo-autoprefixer --save #css兼容性
           pnpm add gifsicle
           pnpm rebuild
 
