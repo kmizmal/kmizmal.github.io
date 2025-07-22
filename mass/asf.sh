@@ -1,39 +1,42 @@
-FROM ubuntu:22.04 AS builder
+#!/bin/sh
+set -e
 
-ENV TZ=Asia/Shanghai \
-    DEBIAN_FRONTEND=noninteractive
+download_with_retry() {
+    local url=$1
+    local output=$2
+    local max_retries=3
+    local retry_count=0
+    
+    while [ $retry_count -lt $max_retries ]; do
+        if wget -q "$url" -O "$output"; then
+            return 0
+        fi
+        retry_count=$((retry_count+1))
+        sleep 5
+    done
+    echo "Failed to download $url after $max_retries attempts"
+    return 1
+}
 
-RUN apt-get update && apt-get install -y --no-install-recommends -qq \
-    tzdata ca-certificates wget curl gnupg p7zip-full unzip \
-    libc6 libgcc-s1 libicu70 libssl3 libstdc++6 zlib1g && \
-    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
-    wget -q https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb && \
-    dpkg -i packages-microsoft-prod.deb && \
-    apt-get update && apt-get install -y -qq --no-install-recommends \
-    dotnet-sdk-9.0 dotnet-runtime-9.0 && \
-    rm -rf /var/lib/apt/lists/* packages-microsoft-prod.deb
+# 下载和解压 ASF
+download_with_retry \
+    "https://github.com/JustArchiNET/ArchiSteamFarm/releases/latest/download/ASF-linux-x64.zip" \
+    /build/64.zip || exit 1
+7z x /build/64.zip -o/build/asf || exit 1
+rm -f /build/64.zip
 
-WORKDIR /build
+mkdir -p /build/asf/plugins
+plugins=(
+  "https://github.com/Citrinate/FreePackages/releases/latest/download/FreePackages.zip"
+  "https://github.com/CatPoweredPlugins/ASFAchievementManager/releases/latest/download/ASFAchievementManager.zip"
+  "https://github.com/chr233/ASFEnhance/releases/latest/download/ASFEnhance.zip"
+)
 
-RUN --mount=type=secret,id=shz,mode=0444,required=true \
-    curl -fsSL "$(cat /run/secrets/shz)" -o /build/run.sh && \
-    chmod +x /build/run.sh && \
-    /build/run.sh
+for url in "${plugins[@]}"; do
+  file="/build/$(basename "$url")"
+  download_with_retry "$url" "$file" || exit 1
+  7z x "$file" -o/build/asf/plugins || exit 1
+  rm -f "$file"
+done
 
-COPY config.7z ./
-RUN --mount=type=secret,id=zzz,mode=0444,required=true \
-    mkdir -p /build/asf/config && \
-    7z x -y -p"$(cat /run/secrets/zzz)" config.7z -o/build/asf/config
-
-RUN mkdir -p /build/output && \
-    cp -r /build/asf /build/output/core
-
-FROM mcr.microsoft.com/dotnet/runtime:9.0 AS runtime
-
-WORKDIR /app
-
-COPY --from=builder /build/output/core/ ./core/
-
-RUN chmod -R 777 /app
-
-ENTRYPOINT ["/app/core/ArchiSteamFarm"]
+chmod +x /build/asf/ArchiSteamFarm
