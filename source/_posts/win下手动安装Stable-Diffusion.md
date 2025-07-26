@@ -7,7 +7,7 @@ tags:
 ---
 
 刚开始是在装stability-ai/stablediffusion的，最后发现没有webui又换AUTOMATIC1111/stable-diffusion-webui了，所以文档写的有点乱喵
-
+<!-- more -->
 ## 安装 conda
 
 在[这里](https://docs.conda.io/en/latest/)下载`Miniforge`版安装  

@@ -5,6 +5,7 @@ tags: 示例
 ---
 ## prism
 ![image](https://img.zmal.top/20250720/image.41ycphzupv.jpg)
+<!-- more -->
 ## prism-coy
 ![image](https://img.zmal.top/20250720/image.1lc4al0eh9.jpg)
 ## prism-dark
