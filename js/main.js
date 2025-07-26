@@ -6,35 +6,53 @@ const app = Vue.createApp({
       hiddenMenu: false,
       showMenuItems: false,
       menuColor: false,
-      scrollTop: 0,
+      scrollTopValue: 0,
+      scrollPercent: 0,
+      // 滚动百分比
       renderers: []
     };
   },
-  created() {
-    window.addEventListener("load", () => {
-      this.loading = false;
-    });
-  },
   mounted() {
     window.addEventListener("scroll", this.handleScroll, true);
+    window.addEventListener("load", () => {
+      this.loading = false;
+      this.handleScroll();
+    });
     this.render();
   },
   methods: {
     render() {
       for (let i of this.renderers) i();
     },
+    getScrollPercent() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight;
+      const windowHeight = window.innerHeight;
+      return scrollTop / (scrollHeight - windowHeight) * 100;
+    },
     handleScroll() {
+      const newScrollTop = document.documentElement.scrollTop;
+      this.scrollPercent = this.getScrollPercent();
+      //   console.log("scrollPercent:", this.scrollPercent);
+
       let wrap = this.$refs.homePostsWrap;
-      let newScrollTop = document.documentElement.scrollTop;
-      if (this.scrollTop < newScrollTop) {
+      if (this.scrollTopValue < newScrollTop) {
         this.hiddenMenu = true;
         this.showMenuItems = false;
-      } else this.hiddenMenu = false;
+      } else {
+        this.hiddenMenu = false;
+      }
       if (wrap) {
         if (newScrollTop <= window.innerHeight - 100) this.menuColor = true;else this.menuColor = false;
         if (newScrollTop <= 400) wrap.style.top = "-" + newScrollTop / 5 + "px";else wrap.style.top = "-80px";
       }
-      this.scrollTop = newScrollTop;
+      this.scrollTopValue = newScrollTop;
+    },
+    scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
     }
   }
 });

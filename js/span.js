@@ -3,6 +3,7 @@ let quotes = ["去活出你自己。", "今天的好计划胜过明天的完美�
 $("body").click(function (e) {
   if ($(e.target).is("img")) return;
   if ($(e.target).closest("pre").length > 0) return;
+  if ($(e.target).closest("#scrollTop").length > 0) return;
   // 随机选择语录
   const randomIndex = Math.floor(Math.random() * quotes.length);
   const quote = quotes[randomIndex];
