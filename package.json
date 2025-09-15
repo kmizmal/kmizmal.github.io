@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "cheerio": "^1.1.2",
-    "hexo": "^7.3.0",
+    "hexo": "^8.0.0",
     "hexo-autoprefixer": "^2.0.0",
     "hexo-babel": "^1.2.0",
     "hexo-clean-css": "^2.0.0",
