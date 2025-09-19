@@ -2,8 +2,12 @@
 let quotes = ["去活出你自己。", "今天的好计划胜过明天的完美计划。", "不要轻言放弃，否则对不起自己。", "紧要关头不放弃，绝望就会变成希望。", "如果不能改变结果，那就完善过程。", "好好活就是干有意义的事，有意义的事就是好好活！", "桃李春风一杯酒，江湖夜雨十年灯。", "欲买桂花同载酒，终不似，少年游。"];
 $("body").click(function (e) {
   if ($(e.target).is("img")) return;
+  if ($(e.target).is("a") || $(e.target).closest("a").length > 0) {
+    return;
+  }
   if ($(e.target).closest("pre").length > 0) return;
-  if ($(e.target).closest("#scrollTop").length > 0) return;
+  if ($(e.target).closest("pre").length > 0) return;
+  // if ($(e.target).closest("#comment").length > 0) return;
   // 随机选择语录
   const randomIndex = Math.floor(Math.random() * quotes.length);
   const quote = quotes[randomIndex];
