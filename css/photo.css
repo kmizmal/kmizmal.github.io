@@ -1,0 +1,1 @@
+.photodiv{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:120px}.photodiv p{text-align:center;display:grid;justify-items:stretch}.photodiv img{max-width:40%;position:relative;z-index:1;border-radius:8px;box-shadow:0 4px 8px rgba(0,0,0,.1);transition:transform .3s ease}.photodiv img:hover{z-index:5;transform:scale(1.05)!important}
