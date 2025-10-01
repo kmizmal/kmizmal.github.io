@@ -11,6 +11,7 @@ tags:
 ```bash
 ssh-keygen -t ed25519 -C "your_email@example.com"
 ```
+<!-- more -->
 
 转到`仪表盘`-`settings`-`SSH and GPG keys`-`New SSH key`
 `Key type`选`Signing Key`粘贴刚才生成之后输出的.pub 公钥中的内容
