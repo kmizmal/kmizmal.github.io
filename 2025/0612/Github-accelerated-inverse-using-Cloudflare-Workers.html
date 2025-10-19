@@ -1,133 +1,133 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><title>使用Cloudflare Workers实现Github加速反代 | zmalの折腾笔记</title><meta name="author" content="zmal"><meta name="description" content="总能在平凡的日子里发现无数温暖的惊喜"><meta name="keywords" content="blog"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"><link rel="icon" href="https://img.zmal.top/avatar.png"><link rel="preconnect" href="https://s4.zstatic.net"><link rel="preconnect" href="https://fonts.googleapis.cn"><link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin><script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script><link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/firacode/6.2.0/fira_code.css"><script>let mixins={}</script><script src="https://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js"></script><script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.css"><script src="/js/PrismJS.js"></script><script src="https://s4.zstatic.net/npm/twikoo@1.6.44/dist/twikoo.min.js"></script><link rel="stylesheet" href="/css/main.css"><style>body{cursor:url(https://img.zmal.top/20250905/Arrow.175qf571ue.ico),auto}</style><meta name="generator" content="Hexo 7.3.0"></head><body><div id="layout"><transition name="fade"><div id="loading" v-if="loading"><div id="loading-circle"></div><div id="loading-toast"><h2 :id="null">LOADING</h2><p>加载过慢请开启缓存 浏览器默认开启</p><img src="https://img.zmal.top/20250905/loading.7i0qd0vvo5.gif"></div></div></transition><div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}"><nav id="desktop-menu"><a class="title" href="/"><span>ZMALの折腾笔记</span> </a><a href="/"><i class="fa-solid fa-house fa-fw"></i> <span>&ensp;Home</span> </a><a href="/about"><i class="fa-solid fa-id-card fa-fw"></i> <span>&ensp;About</span> </a><a href="/archives"><i class="fa-solid fa-box-archive fa-fw"></i> <span>&ensp;Archives</span> </a><a href="/tags"><i class="fa-solid fa-tags fa-fw"></i> <span>&ensp;Tags</span></a></nav><nav id="mobile-menu"><div class="title" @click="showMenuItems = !showMenuItems"><i class="fa-solid fa-bars fa-fw"></i> <span>&emsp;ZMALの折腾笔记</span></div><transition name="slide"><div class="items" v-show="showMenuItems"><a href="/"><div class="item"><div style="min-width:20px;max-width:50px;width:10%"><i class="fa-solid fa-house fa-fw"></i></div><div style="min-width:100px;max-width:150%;width:20%">Home</div></div></a><a href="/about"><div class="item"><div style="min-width:20px;max-width:50px;width:10%"><i class="fa-solid fa-id-card fa-fw"></i></div><div style="min-width:100px;max-width:150%;width:20%">About</div></div></a><a href="/archives"><div class="item"><div style="min-width:20px;max-width:50px;width:10%"><i class="fa-solid fa-box-archive fa-fw"></i></div><div style="min-width:100px;max-width:150%;width:20%">Archives</div></div></a><a href="/tags"><div class="item"><div style="min-width:20px;max-width:50px;width:10%"><i class="fa-solid fa-tags fa-fw"></i></div><div style="min-width:100px;max-width:150%;width:20%">Tags</div></div></a></div></transition></nav></div><transition name="fade"><div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div></transition><div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'"><div class="article"><div><h1>使用Cloudflare Workers实现Github加速反代</h1></div><div class="info"><span class="date"><span class="icon"><i class="fa-solid fa-calendar fa-fw"></i></span> 2025/6/12 <span class="icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span> 2025/10/6 </span><span class="tags"><span class="icon"><i class="fa-solid fa-tags fa-fw"></i> </span><span class="tag"><a href="/tags/%E7%AC%94%E8%AE%B0/" style="color:'#39C5BB'">笔记 </a></span><span class="tag"><a href="/tags/%E6%9C%8D%E5%8A%A1/" style="color:'#ff7d73'">服务</a></span></span></div><div class="content" v-pre><p>虽然cf在国内也会收到gfw的影响，但相对来说比GitHub好好多，故在赛博大善人的workers服务上部署了一个反代服务，主要是给朋友们用及特殊情况应急</p><span id="more"></span><p>为避免滥用反代脚本屏蔽了部分敏感路径</p><pre class="line-numbers language-none"><code class="language-none">addEventListener(&#39;fetch&#39;, event &#x3D;&gt; &#123;
-  event.respondWith(handleRequest(event))
-&#125;)
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><title>使用Cloudflare Workers实现Github加速反代 | zmalの折腾笔记</title><meta name="author" content="zmal"><meta name="description" content="总能在平凡的日子里发现无数温暖的惊喜"><meta name="keywords" content="blog"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"><link rel="icon" href="https://img.zmal.top/avatar.png"><link rel="preconnect" href="https://s4.zstatic.net"><link rel="preconnect" href="https://fonts.googleapis.cn"><link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin><script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script><link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/firacode/6.2.0/fira_code.css"><script>let mixins={}</script><script src="https://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js"></script><script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.css"><script src="/js/PrismJS.js"></script><script src="https://s4.zstatic.net/npm/twikoo@1.6.44/dist/twikoo.min.js"></script><link rel="stylesheet" href="/css/main.css"><style>body{cursor:url(https://img.zmal.top/20250905/Arrow.175qf571ue.ico),auto}</style><meta name="generator" content="Hexo 7.3.0"></head><body><div id="layout"><transition name="fade"><div id="loading" v-if="loading"><div id="loading-circle"></div><div id="loading-toast"><h2 :id="null">LOADING</h2><p>加载过慢请开启缓存 浏览器默认开启</p><img src="https://img.zmal.top/20250905/loading.7i0qd0vvo5.gif"></div></div></transition><div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}"><nav id="desktop-menu"><a class="title" href="/"><span>ZMALの折腾笔记</span> </a><a href="/"><i class="fa-solid fa-house fa-fw"></i> <span>&ensp;Home</span> </a><a href="/about"><i class="fa-solid fa-id-card fa-fw"></i> <span>&ensp;About</span> </a><a href="/archives"><i class="fa-solid fa-box-archive fa-fw"></i> <span>&ensp;Archives</span> </a><a href="/tags"><i class="fa-solid fa-tags fa-fw"></i> <span>&ensp;Tags</span></a></nav><nav id="mobile-menu"><div class="title" @click="showMenuItems = !showMenuItems"><i class="fa-solid fa-bars fa-fw"></i> <span>&emsp;ZMALの折腾笔记</span></div><transition name="slide"><div class="items" v-show="showMenuItems"><a href="/"><div class="item"><div style="min-width:20px;max-width:50px;width:10%"><i class="fa-solid fa-house fa-fw"></i></div><div style="min-width:100px;max-width:150%;width:20%">Home</div></div></a><a href="/about"><div class="item"><div style="min-width:20px;max-width:50px;width:10%"><i class="fa-solid fa-id-card fa-fw"></i></div><div style="min-width:100px;max-width:150%;width:20%">About</div></div></a><a href="/archives"><div class="item"><div style="min-width:20px;max-width:50px;width:10%"><i class="fa-solid fa-box-archive fa-fw"></i></div><div style="min-width:100px;max-width:150%;width:20%">Archives</div></div></a><a href="/tags"><div class="item"><div style="min-width:20px;max-width:50px;width:10%"><i class="fa-solid fa-tags fa-fw"></i></div><div style="min-width:100px;max-width:150%;width:20%">Tags</div></div></a></div></transition></nav></div><transition name="fade"><div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div></transition><div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'"><div class="article"><div><h1>使用Cloudflare Workers实现Github加速反代</h1></div><div class="info"><span class="date"><span class="icon"><i class="fa-solid fa-calendar fa-fw"></i></span> 2025/6/12 <span class="icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span> 2025/10/19 </span><span class="tags"><span class="icon"><i class="fa-solid fa-tags fa-fw"></i> </span><span class="tag"><a href="/tags/%E7%AC%94%E8%AE%B0/" style="color:'#ff7d73'">笔记 </a></span><span class="tag"><a href="/tags/%E6%9C%8D%E5%8A%A1/" style="color:'#66CCFF'">服务</a></span></span></div><div class="content" v-pre><p>虽然cf在国内也会收到gfw的影响，但相对来说比GitHub好好多，故在赛博大善人的workers服务上部署了一个反代服务，主要是给朋友们用及特殊情况应急</p><span id="more"></span><p>为避免滥用反代脚本屏蔽了部分敏感路径</p><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'fetch'</span><span class="token punctuation">,</span> <span class="token parameter">event</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  event<span class="token punctuation">.</span><span class="token function">respondWith</span><span class="token punctuation">(</span><span class="token function">handleRequest</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
 
-&#x2F;&#x2F; 配置常量
-const BLOCKED_PATHS &#x3D; [
-  &#39;&#x2F;login&#39;, &#39;&#x2F;signup&#39;, &#39;&#x2F;session&#39;, &#39;&#x2F;settings&#39;,
-  &#39;&#x2F;oauth&#39;, &#39;&#x2F;auth&#39;, &#39;&#x2F;account&#39;, &#39;&#x2F;user&#39;, &#39;&#x2F;new&#39;,
-  &#39;&#x2F;marketplace&#39;, &#39;&#x2F;notifications&#39;
-]
-const BLOCKED_COOKIES &#x3D; [&#39;user_session&#39;, &#39;_gh_sess&#39;, &#39;logged_in&#39;]
-const CACHE_WHITELIST &#x3D; [&#39;image&#39;, &#39;font&#39;, &#39;script&#39;, &#39;stylesheet&#39;]
-const GIT_PROTOCOL_PATHS &#x3D; [&#39;&#x2F;info&#x2F;refs&#39;, &#39;&#x2F;git-upload-pack&#39;, &#39;&#x2F;git-receive-pack&#39;]
+<span class="token comment">// 配置常量</span>
+<span class="token keyword">const</span> <span class="token constant">BLOCKED_PATHS</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token string">'/login'</span><span class="token punctuation">,</span> <span class="token string">'/signup'</span><span class="token punctuation">,</span> <span class="token string">'/session'</span><span class="token punctuation">,</span> <span class="token string">'/settings'</span><span class="token punctuation">,</span>
+  <span class="token string">'/oauth'</span><span class="token punctuation">,</span> <span class="token string">'/auth'</span><span class="token punctuation">,</span> <span class="token string">'/account'</span><span class="token punctuation">,</span> <span class="token string">'/user'</span><span class="token punctuation">,</span> <span class="token string">'/new'</span><span class="token punctuation">,</span>
+  <span class="token string">'/marketplace'</span><span class="token punctuation">,</span> <span class="token string">'/notifications'</span>
+<span class="token punctuation">]</span>
+<span class="token keyword">const</span> <span class="token constant">BLOCKED_COOKIES</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'user_session'</span><span class="token punctuation">,</span> <span class="token string">'_gh_sess'</span><span class="token punctuation">,</span> <span class="token string">'logged_in'</span><span class="token punctuation">]</span>
+<span class="token keyword">const</span> <span class="token constant">CACHE_WHITELIST</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'image'</span><span class="token punctuation">,</span> <span class="token string">'font'</span><span class="token punctuation">,</span> <span class="token string">'script'</span><span class="token punctuation">,</span> <span class="token string">'stylesheet'</span><span class="token punctuation">]</span>
+<span class="token keyword">const</span> <span class="token constant">GIT_PROTOCOL_PATHS</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'/info/refs'</span><span class="token punctuation">,</span> <span class="token string">'/git-upload-pack'</span><span class="token punctuation">,</span> <span class="token string">'/git-receive-pack'</span><span class="token punctuation">]</span>
 
-async function handleRequest(event) &#123;
-  const request &#x3D; event.request
-  const url &#x3D; new URL(request.url)
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">handleRequest</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">const</span> request <span class="token operator">=</span> event<span class="token punctuation">.</span>request
+  <span class="token keyword">const</span> url <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">URL</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>url<span class="token punctuation">)</span>
 
-  &#x2F;&#x2F; --- 安全拦截阶段 ---
-  if (isBlockedRequest(url)) &#123;
-    return createBlockedResponse()
-  &#125;
+  <span class="token comment">// --- 安全拦截阶段 ---</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isBlockedRequest</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token function">createBlockedResponse</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
 
-  &#x2F;&#x2F; --- 请求改写阶段 ---
-  const upstreamUrl &#x3D; buildGitHubUrl(url)
-  const newRequest &#x3D; rewriteRequest(request, upstreamUrl)
+  <span class="token comment">// --- 请求改写阶段 ---</span>
+  <span class="token keyword">const</span> upstreamUrl <span class="token operator">=</span> <span class="token function">buildGitHubUrl</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+  <span class="token keyword">const</span> newRequest <span class="token operator">=</span> <span class="token function">rewriteRequest</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> upstreamUrl<span class="token punctuation">)</span>
 
-  &#x2F;&#x2F; --- 代理请求阶段 ---
-  let response &#x3D; await fetch(newRequest)
+  <span class="token comment">// --- 代理请求阶段 ---</span>
+  <span class="token keyword">let</span> response <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span>newRequest<span class="token punctuation">)</span>
 
-  &#x2F;&#x2F; --- 响应处理阶段 ---
-  return processResponse(response, url.hostname)
-&#125;
+  <span class="token comment">// --- 响应处理阶段 ---</span>
+  <span class="token keyword">return</span> <span class="token function">processResponse</span><span class="token punctuation">(</span>response<span class="token punctuation">,</span> url<span class="token punctuation">.</span>hostname<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
 
-&#x2F;&#x2F; 安全检测函数
-function isBlockedRequest(url) &#123;
-  const path &#x3D; url.pathname.toLowerCase()
+<span class="token comment">// 安全检测函数</span>
+<span class="token keyword">function</span> <span class="token function">isBlockedRequest</span><span class="token punctuation">(</span><span class="token parameter">url</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">const</span> path <span class="token operator">=</span> url<span class="token punctuation">.</span>pathname<span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
   
-  &#x2F;&#x2F; 拦截登录相关路径
-  if (BLOCKED_PATHS.some(p &#x3D;&gt; path.startsWith(p))) &#123;
-    return true
-  &#125;
+  <span class="token comment">// 拦截登录相关路径</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token constant">BLOCKED_PATHS</span><span class="token punctuation">.</span><span class="token function">some</span><span class="token punctuation">(</span><span class="token parameter">p</span> <span class="token operator">=></span> path<span class="token punctuation">.</span><span class="token function">startsWith</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token boolean">true</span>
+  <span class="token punctuation">&#125;</span>
 
-  &#x2F;&#x2F; 拦截敏感文件请求
-  if (path.includes(&#39;&#x2F;.env&#39;) || path.endsWith(&#39;.php&#39;)) &#123;
-    return true
-  &#125;
+  <span class="token comment">// 拦截敏感文件请求</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>path<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">'/.env'</span><span class="token punctuation">)</span> <span class="token operator">||</span> path<span class="token punctuation">.</span><span class="token function">endsWith</span><span class="token punctuation">(</span><span class="token string">'.php'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token boolean">true</span>
+  <span class="token punctuation">&#125;</span>
 
-  return false
-&#125;
+  <span class="token keyword">return</span> <span class="token boolean">false</span>
+<span class="token punctuation">&#125;</span>
 
-&#x2F;&#x2F; 构建 GitHub 目标 URL
-function buildGitHubUrl(originalUrl) &#123;
-  const url &#x3D; new URL(originalUrl)
-  url.hostname &#x3D; &#39;github.com&#39;
+<span class="token comment">// 构建 GitHub 目标 URL</span>
+<span class="token keyword">function</span> <span class="token function">buildGitHubUrl</span><span class="token punctuation">(</span><span class="token parameter">originalUrl</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">const</span> url <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">URL</span><span class="token punctuation">(</span>originalUrl<span class="token punctuation">)</span>
+  url<span class="token punctuation">.</span>hostname <span class="token operator">=</span> <span class="token string">'github.com'</span>
   
-  &#x2F;&#x2F; Git 协议特殊处理
-  if (GIT_PROTOCOL_PATHS.some(p &#x3D;&gt; url.pathname.includes(p))) &#123;
-    url.pathname &#x3D; url.pathname.replace(&#x2F;\.git(\&#x2F;|$)&#x2F;, &#39;$1&#39;)
-  &#125;
+  <span class="token comment">// Git 协议特殊处理</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token constant">GIT_PROTOCOL_PATHS</span><span class="token punctuation">.</span><span class="token function">some</span><span class="token punctuation">(</span><span class="token parameter">p</span> <span class="token operator">=></span> url<span class="token punctuation">.</span>pathname<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    url<span class="token punctuation">.</span>pathname <span class="token operator">=</span> url<span class="token punctuation">.</span>pathname<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.git(\/|$)</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span> <span class="token string">'$1'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
   
-  return url
-&#125;
+  <span class="token keyword">return</span> url
+<span class="token punctuation">&#125;</span>
 
-&#x2F;&#x2F; 请求头改写
-function rewriteRequest(originalRequest, upstreamUrl) &#123;
-  const headers &#x3D; new Headers(originalRequest.headers)
+<span class="token comment">// 请求头改写</span>
+<span class="token keyword">function</span> <span class="token function">rewriteRequest</span><span class="token punctuation">(</span><span class="token parameter">originalRequest<span class="token punctuation">,</span> upstreamUrl</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">const</span> headers <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Headers</span><span class="token punctuation">(</span>originalRequest<span class="token punctuation">.</span>headers<span class="token punctuation">)</span>
   
-  &#x2F;&#x2F; 移除敏感 Cookie
-  BLOCKED_COOKIES.forEach(c &#x3D;&gt; headers.delete(c))
+  <span class="token comment">// 移除敏感 Cookie</span>
+  <span class="token constant">BLOCKED_COOKIES</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">c</span> <span class="token operator">=></span> headers<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">)</span>
   
-  &#x2F;&#x2F; 修正协议头
-  headers.set(&#39;Host&#39;, &#39;github.com&#39;)
-  headers.set(&#39;X-Forwarded-Proto&#39;, &#39;https&#39;)
+  <span class="token comment">// 修正协议头</span>
+  headers<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">'Host'</span><span class="token punctuation">,</span> <span class="token string">'github.com'</span><span class="token punctuation">)</span>
+  headers<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">'X-Forwarded-Proto'</span><span class="token punctuation">,</span> <span class="token string">'https'</span><span class="token punctuation">)</span>
   
-  &#x2F;&#x2F; 构建新请求
-  return new Request(upstreamUrl, &#123;
-    method: originalRequest.method,
-    headers: headers,
-    body: originalRequest.body,
-    redirect: &#39;manual&#39;
-  &#125;)
-&#125;
+  <span class="token comment">// 构建新请求</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Request</span><span class="token punctuation">(</span>upstreamUrl<span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">method</span><span class="token operator">:</span> originalRequest<span class="token punctuation">.</span>method<span class="token punctuation">,</span>
+    <span class="token literal-property property">headers</span><span class="token operator">:</span> headers<span class="token punctuation">,</span>
+    <span class="token literal-property property">body</span><span class="token operator">:</span> originalRequest<span class="token punctuation">.</span>body<span class="token punctuation">,</span>
+    <span class="token literal-property property">redirect</span><span class="token operator">:</span> <span class="token string">'manual'</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
 
-&#x2F;&#x2F; 响应处理
-async function processResponse(response, customHost) &#123;
-  const contentType &#x3D; response.headers.get(&#39;content-type&#39;) || &#39;&#39;
-  const isCacheable &#x3D; CACHE_WHITELIST.some(t &#x3D;&gt; contentType.includes(t))
+<span class="token comment">// 响应处理</span>
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">processResponse</span><span class="token punctuation">(</span><span class="token parameter">response<span class="token punctuation">,</span> customHost</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">const</span> contentType <span class="token operator">=</span> response<span class="token punctuation">.</span>headers<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'content-type'</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token string">''</span>
+  <span class="token keyword">const</span> isCacheable <span class="token operator">=</span> <span class="token constant">CACHE_WHITELIST</span><span class="token punctuation">.</span><span class="token function">some</span><span class="token punctuation">(</span><span class="token parameter">t</span> <span class="token operator">=></span> contentType<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">)</span>
   
-  &#x2F;&#x2F; 创建可修改的响应副本
-  const newResponse &#x3D; new Response(response.body, response)
+  <span class="token comment">// 创建可修改的响应副本</span>
+  <span class="token keyword">const</span> newResponse <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Response</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>body<span class="token punctuation">,</span> response<span class="token punctuation">)</span>
 
-  &#x2F;&#x2F; 内容重写（仅处理文本内容）
-  if (contentType.includes(&#39;text&#39;) || contentType.includes(&#39;json&#39;)) &#123;
-    const text &#x3D; await response.text()
-    const replaced &#x3D; text.replaceAll(&#39;github.com&#39;, customHost)
-                         .replaceAll(&#39;www.github.com&#39;, customHost)
-    newResponse.headers.set(&#39;content-length&#39;, replaced.length)
-    return new Response(replaced, newResponse)
-  &#125;
+  <span class="token comment">// 内容重写（仅处理文本内容）</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>contentType<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">'text'</span><span class="token punctuation">)</span> <span class="token operator">||</span> contentType<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">'json'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">const</span> text <span class="token operator">=</span> <span class="token keyword">await</span> response<span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">const</span> replaced <span class="token operator">=</span> text<span class="token punctuation">.</span><span class="token function">replaceAll</span><span class="token punctuation">(</span><span class="token string">'github.com'</span><span class="token punctuation">,</span> customHost<span class="token punctuation">)</span>
+                         <span class="token punctuation">.</span><span class="token function">replaceAll</span><span class="token punctuation">(</span><span class="token string">'www.github.com'</span><span class="token punctuation">,</span> customHost<span class="token punctuation">)</span>
+    newResponse<span class="token punctuation">.</span>headers<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">'content-length'</span><span class="token punctuation">,</span> replaced<span class="token punctuation">.</span>length<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Response</span><span class="token punctuation">(</span>replaced<span class="token punctuation">,</span> newResponse<span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
 
-  &#x2F;&#x2F; 缓存控制
-  if (isCacheable &amp;&amp; response.status &#x3D;&#x3D;&#x3D; 200) &#123;
-    newResponse.headers.set(&#39;Cache-Control&#39;, &#39;public, max-age&#x3D;3600&#39;)
-  &#125; else &#123;
-    newResponse.headers.set(&#39;Cache-Control&#39;, &#39;no-store&#39;)
-  &#125;
+  <span class="token comment">// 缓存控制</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>isCacheable <span class="token operator">&amp;&amp;</span> response<span class="token punctuation">.</span>status <span class="token operator">===</span> <span class="token number">200</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    newResponse<span class="token punctuation">.</span>headers<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">'Cache-Control'</span><span class="token punctuation">,</span> <span class="token string">'public, max-age=3600'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+    newResponse<span class="token punctuation">.</span>headers<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">'Cache-Control'</span><span class="token punctuation">,</span> <span class="token string">'no-store'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
 
-  &#x2F;&#x2F; 处理重定向
-  if ([301, 302, 303, 307, 308].includes(response.status)) &#123;
-    const location &#x3D; newResponse.headers.get(&#39;location&#39;)
-    if (location &amp;&amp; location.includes(&#39;github.com&#39;)) &#123;
-      newResponse.headers.set(&#39;location&#39;, location.replace(&#39;github.com&#39;, customHost))
-    &#125;
-  &#125;
+  <span class="token comment">// 处理重定向</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">301</span><span class="token punctuation">,</span> <span class="token number">302</span><span class="token punctuation">,</span> <span class="token number">303</span><span class="token punctuation">,</span> <span class="token number">307</span><span class="token punctuation">,</span> <span class="token number">308</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>status<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">const</span> location <span class="token operator">=</span> newResponse<span class="token punctuation">.</span>headers<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'location'</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>location <span class="token operator">&amp;&amp;</span> location<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">'github.com'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      newResponse<span class="token punctuation">.</span>headers<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">'location'</span><span class="token punctuation">,</span> location<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token string">'github.com'</span><span class="token punctuation">,</span> customHost<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span>
 
-  &#x2F;&#x2F; 移除敏感头
-  newResponse.headers.delete(&#39;set-cookie&#39;)
-  newResponse.headers.delete(&#39;x-github-request-id&#39;)
+  <span class="token comment">// 移除敏感头</span>
+  newResponse<span class="token punctuation">.</span>headers<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span><span class="token string">'set-cookie'</span><span class="token punctuation">)</span>
+  newResponse<span class="token punctuation">.</span>headers<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span><span class="token string">'x-github-request-id'</span><span class="token punctuation">)</span>
 
-  return newResponse
-&#125;
+  <span class="token keyword">return</span> newResponse
+<span class="token punctuation">&#125;</span>
 
-&#x2F;&#x2F; 拦截响应生成
-function createBlockedResponse() &#123;
-  return new Response(&#39;Access Denied&#39;, &#123;
-    status: 403,
-    headers: &#123;
-      &#39;Content-Type&#39;: &#39;text&#x2F;plain&#39;,
-      &#39;Cache-Control&#39;: &#39;no-store&#39;
-    &#125;
-  &#125;)
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>当然你也可以使用我部署好的现成的服务，但是不保证可用，本人不因此反代服务承担任何责任，仅供学习交流使用，严禁滥用！</p><p>使用方法，将任意位置的<code>github.com</code>修改为<code>git.zmal.top</code>(敏感位置不提供反代服务)</p><p>示例</p><blockquote></blockquote><p>原：<code>https://github.com/kmizmal</code><br>使用反代： <code>https://git.zmal.top/kmizmal</code></p><p>原： <code>https://github.com/kmizmal/Sleepy-Android/releases/latest</code><br>使用反代：<code>https://git.zmal.top/kmizmal/Sleepy-Android/releases/latest</code></p><blockquote></blockquote><p><em><strong>注意</strong></em></p><p>该反代脚本会将页面中绝大部分<code>github.com</code>-&gt;<code>git.zmal.top</code><br>如果将来我的反代服务<code>git.zmal.top</code>停止维护请自行替换</p></div><div id="comment"><div id="twikoo-container"></div></div></div><footer id="footer"><div id="footer-wrap"><div>&copy; 2022 - 2025 zmalの折腾笔记 <span id="footer-icon"><i class="fa-solid fa-font-awesome fa-fw"></i> </span>&commat;zmal</div><div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp; <a target="_blank" rel="noopener" href="https://github.com/kmizmal/hexo-theme-particlex">ParticleX Theme</a></div><div>备案号： <a target="_blank" rel="noopener" href="https://icp.gov.moe/?keyword=20250124">萌ICP备20250124号</a></div><div class="visitors">本站访问次数：<span id="finicount_views">加载中...</span></div><script>if("localhost"!==location.hostname&&"127.0.0.1"!==location.hostname){let e=document.createElement("script");e.src="https://finicounter.eu.org/finicounter.js",e.async=!0,e.onload=()=>{let t=setInterval(()=>{try{var e;"undefined"!=typeof finiCounter&&void 0!==finiCounter.views&&((e=document.getElementById("finicount_views"))&&(e.textContent=finiCounter.views),clearInterval(t))}catch(e){console.warn("访客统计异常：",e),clearInterval(t)}},500)},e.onerror=()=>{var e=document.getElementById("finicount_views");e&&(e.textContent="统计服务不可用")},document.body.appendChild(e)}else{let e=document.getElementById("finicount_views");e&&(e.textContent="本地预览中")}</script></div></footer></div><script src="/js/canvas.js"></script><div id="scrollProgressBar" :style="{ width: scrollPercent + '%' }"></div><div id="scrollTop" @click="scrollToTop" :style="{ opacity: scrollPercent > 20 ? 1 : 0, pointerEvents: scrollPercent > 20 ? 'auto' : 'none' }"><i class="fa-solid fa-arrow-up"></i></div></div><script src="/js/main.js"></script><script>twikoo.init({el:"#twikoo-container",envId:"https://twikoo.zmal.top",region:"",path:location.pathname,lang:"zh-cn"})</script><script src="/js/span.js"></script></body></html>
+<span class="token comment">// 拦截响应生成</span>
+<span class="token keyword">function</span> <span class="token function">createBlockedResponse</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Response</span><span class="token punctuation">(</span><span class="token string">'Access Denied'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">status</span><span class="token operator">:</span> <span class="token number">403</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">headers</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+      <span class="token string-property property">'Content-Type'</span><span class="token operator">:</span> <span class="token string">'text/plain'</span><span class="token punctuation">,</span>
+      <span class="token string-property property">'Cache-Control'</span><span class="token operator">:</span> <span class="token string">'no-store'</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>当然你也可以使用我部署好的现成的服务，但是不保证可用，本人不因此反代服务承担任何责任，仅供学习交流使用，严禁滥用！</p><p>使用方法，将任意位置的<code>github.com</code>修改为<code>git.zmal.top</code>(敏感位置不提供反代服务)</p><p>示例</p><blockquote></blockquote><p>原：<code>https://github.com/kmizmal</code><br>使用反代： <code>https://git.zmal.top/kmizmal</code></p><p>原： <code>https://github.com/kmizmal/Sleepy-Android/releases/latest</code><br>使用反代：<code>https://git.zmal.top/kmizmal/Sleepy-Android/releases/latest</code></p><blockquote></blockquote><p><em><strong>注意</strong></em></p><p>该反代脚本会将页面中绝大部分<code>github.com</code>-&gt;<code>git.zmal.top</code><br>如果将来我的反代服务<code>git.zmal.top</code>停止维护请自行替换</p></div><div id="comment"><div id="twikoo-container"></div></div></div><footer id="footer"><div id="footer-wrap"><div>&copy; 2022 - 2025 zmalの折腾笔记 <span id="footer-icon"><i class="fa-solid fa-font-awesome fa-fw"></i> </span>&commat;zmal</div><div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp; <a target="_blank" rel="noopener" href="https://github.com/kmizmal/hexo-theme-particlex">ParticleX Theme</a></div><div>备案号： <a target="_blank" rel="noopener" href="https://icp.gov.moe/?keyword=20250124">萌ICP备20250124号</a></div><div class="visitors">本站访问次数：<span id="finicount_views">加载中...</span></div><script>if("localhost"!==location.hostname&&"127.0.0.1"!==location.hostname){let e=document.createElement("script");e.src="https://finicounter.eu.org/finicounter.js",e.async=!0,e.onload=()=>{let t=setInterval(()=>{try{var e;"undefined"!=typeof finiCounter&&void 0!==finiCounter.views&&((e=document.getElementById("finicount_views"))&&(e.textContent=finiCounter.views),clearInterval(t))}catch(e){console.warn("访客统计异常：",e),clearInterval(t)}},500)},e.onerror=()=>{var e=document.getElementById("finicount_views");e&&(e.textContent="统计服务不可用")},document.body.appendChild(e)}else{let e=document.getElementById("finicount_views");e&&(e.textContent="本地预览中")}</script></div></footer></div><script src="/js/canvas.js"></script><div id="scrollProgressBar" :style="{ width: scrollPercent + '%' }"></div><div id="scrollTop" @click="scrollToTop" :style="{ opacity: scrollPercent > 20 ? 1 : 0, pointerEvents: scrollPercent > 20 ? 'auto' : 'none' }"><i class="fa-solid fa-arrow-up"></i></div></div><script src="/js/main.js"></script><script>twikoo.init({el:"#twikoo-container",envId:"https://twikoo.zmal.top",region:"",path:location.pathname,lang:"zh-cn"})</script><script src="/js/span.js"></script></body></html>
