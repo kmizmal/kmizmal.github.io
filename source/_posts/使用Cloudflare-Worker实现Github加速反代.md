@@ -9,7 +9,7 @@ tags:
 <!-- more -->
 为避免滥用反代脚本屏蔽了部分敏感路径
 
-```
+```js
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event))
 })

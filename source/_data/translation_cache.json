@@ -45,5 +45,6 @@
   "利用Google-Mail为域名邮箱提供发件能力": "Delivery-capability-for-domain-mail-using-Google-Mail",
   "众人将与一人离别惟其人将觐见奇迹": "The-people-will-be-separated-from-one,-but-they-will-see-miracles",
   "使用ssh密钥代替gpg密钥对git提交签名": "use-ssh-key-instead-of-gpg-key-to-sign",
-  "你猜今天是什么日子": "Guess-what-day-it-is"
+  "你猜今天是什么日子": "Guess-what-day-it-is",
+  "使用Cap实现方便的人机验证": "Use-Cap-for-convenient-human-machine-authentication"
 }
