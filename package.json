@@ -18,7 +18,7 @@
     "hexo-babel": "^1.2.0",
     "hexo-clean-css": "^2.0.0",
     "hexo-front-matter": "^4.2.1",
-    "hexo-fs": "^5.0.0",
+    "hexo-fs": "^5.0.1",
     "hexo-generator-archive": "^2.0.0",
     "hexo-generator-category": "^2.0.0",
     "hexo-generator-index": "^4.0.0",
