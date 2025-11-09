@@ -2,7 +2,7 @@
 title: 使用ssh密钥代替gpg密钥对git提交签名
 date: 2025-09-28 21:42:19
 tags:
-  - github
+  - Github
   - 笔记
 ---
 
