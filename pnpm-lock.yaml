@@ -63,8 +63,8 @@ importers:
         specifier: ^0.3.1
         version: 0.3.1
       pnpm:
-        specifier: ^10.18.1
-        version: 10.18.1
+        specifier: ^10.28.0
+        version: 10.28.0
       sass:
         specifier: ^1.97.2
         version: 1.97.2
@@ -1201,8 +1201,8 @@ packages:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
 
-  pnpm@10.18.1:
-    resolution: {integrity: sha512-d6iEoWXLui2NHBnjtIgO7m0vyr0Nh5Eh4oIZa4AEI1HV6zygk1+lmdodxRJlzGiBatK93Sot5eqf35KtvsfNNA==}
+  pnpm@10.28.0:
+    resolution: {integrity: sha512-Bd9x0UIfITmeBT/eVnzqNNRG+gLHZXFEG/wceVbpjjYwiJgtlARl/TRIDU2QoGaLwSNi+KqIAApk6D0LDke+SA==}
     engines: {node: '>=18.12'}
     hasBin: true
 
@@ -2332,7 +2332,7 @@ snapshots:
       fast-text-table: 1.0.1
       hexo-cli: 4.3.2
       hexo-front-matter: 4.2.1
-      hexo-fs: 5.0.0
+      hexo-fs: 5.0.1
       hexo-i18n: 2.0.0
       hexo-log: 4.1.0
       hexo-util: 4.0.0
@@ -2666,7 +2666,7 @@ snapshots:
 
   picomatch@2.3.1: {}
 
-  pnpm@10.18.1: {}
+  pnpm@10.28.0: {}
 
   postcss-value-parser@4.2.0: {}
 
