@@ -12,7 +12,7 @@
     "version": "8.1.1"
   },
   "dependencies": {
-    "cheerio": "^1.1.2",
+    "cheerio": "^1.2.0",
     "hexo": "^8.1.1",
     "hexo-autoprefixer": "^2.0.0",
     "hexo-babel": "^1.2.0",
