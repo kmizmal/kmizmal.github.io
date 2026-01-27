@@ -30,7 +30,7 @@
     "hexo-renderer-stylus": "^3.0.1",
     "hexo-server": "^3.0.0",
     "hexo-tag-bilibili": "^0.3.1",
-    "pnpm": "^10.28.0",
+    "pnpm": "^10.28.2",
     "sass": "^1.97.2",
     "sharp": "^0.34.5"
   },
