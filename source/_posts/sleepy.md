@@ -1,0 +1,18 @@
+---
+title: sleepy?
+Translate_title: sleepy?
+comments: true
+tags: 日记
+published: true
+layout: post
+date: 2025-02-09 17:12:10
+updated: 2025-02-10 13:47:55
+---
+
+最进有一个人研究了好几天  
+一个用于 ~~_视奸_~~ 查看个人在线状态 (以及正在使用软件) 的 Flask 应用
+
+我不说是谁
+https://sleepy.zmal.top
+
+[GitHub](https://github.com/kmizmal/sleepy)
