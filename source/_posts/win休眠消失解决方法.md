@@ -10,4 +10,4 @@ powercfg /hibernate on
 ```
 
 之后在控制面板-系统和安全-电源选项-选择电源按钮的功能-关机设置 勾选`休眠`
-![image](https://img.zmal.top/20250618/image.8ojygg4clw.jpg)
+![image](https://img.zmal.top/2025/0618/image.8ojygg4clw.jpg)

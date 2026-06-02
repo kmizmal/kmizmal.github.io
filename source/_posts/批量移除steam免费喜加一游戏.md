@@ -6,7 +6,7 @@ tags:
   - 笔记
 ---
 
-之前年轻不懂事，在挂卡 ASF 的都很好顺手开了自动入库免费游戏，刚开始看着我仓库里越来越多的游戏还挺开心的。直到后面找不到我想玩的游戏才发现不对劲。 大量免费游戏占据了我的库![image](https://img.zmal.top/20250727/image.83acejyb99.jpg)
+之前年轻不懂事，在挂卡 ASF 的都很好顺手开了自动入库免费游戏，刚开始看着我仓库里越来越多的游戏还挺开心的。直到后面找不到我想玩的游戏才发现不对劲。 大量免费游戏占据了我的库![image](https://img.zmal.top/2025/0727/image.83acejyb99.jpg)
 
 <!-- more -->
 
@@ -77,7 +77,7 @@ tags:
 # 食用方法
 
 打开 [steam 的许可证页面](https://store.steampowered.com/account/licenses/)正常登录之后打开控制台粘贴 js 执行即可
-![image](https://img.zmal.top/20250727/image.icfacs09y.jpg)
+![image](https://img.zmal.top/2025/0727/image.icfacs09y.jpg)
 如果你和我一样加载不出来也是正常~~自作自受~~的，直接开控制台执行就行，不过因为太多了需要过一会手动刷新页面才能继续
 
 **_加一一时爽，删库火葬场啊。_**

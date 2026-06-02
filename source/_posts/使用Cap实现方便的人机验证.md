@@ -6,8 +6,8 @@ tags: 笔记
 
 [Cap](https://capjs.js.org/) 是一种现代、轻量级、开源的验证码替代方案，使用 SHA-256 工作量证明。
 
-![image](https://github.com/kmizmal/picx-images-hosting/raw/master/image.1sffsfs4x2.webp)
-![image](https://github.com/kmizmal/picx-images-hosting/raw/master/image.szcf9p6ow.webp)
+![image](https://img.zmal.top/2025/1019/image.1sffsfs4x2.webp)
+![image](https://img.zmal.top/2025/1019/image.szcf9p6ow.webp)
 
 <!-- more -->
 
