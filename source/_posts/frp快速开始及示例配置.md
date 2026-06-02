@@ -27,7 +27,7 @@ wget https://github.com/fatedier/frp/releases/download/v0.64.0/frp_0.64.0_linux_
 
 > 如果你看到这篇文章时已经过去很久了，我推荐你去[发布页](https://github.com/fatedier/frp/releases)寻找最新的版本
 > 并且在之后的步骤中~~自适应~~将之后带版本的的地方根据实际情况更改(善用 Tab 键)
-> ![image](https://img.zmal.top/20250918/image.7w76mlq0wb.png)
+> ![image](https://img.zmal.top/2025/0918/image.7w76mlq0wb.png)
 
 一般都是 amd64 ~~大不了一个一个试~~
 
@@ -46,7 +46,7 @@ cd frp_0.64.0_linux_amd64
 nano frps.toml
 ```
 
-![image](https://img.zmal.top/20250918/image.3gorhcs0e4.jpg)
+![image](https://img.zmal.top/2025/0918/image.3gorhcs0e4.jpg)
 示例配置
 
 ```toml

@@ -8,7 +8,7 @@ tags:
 
 ### 先看效果
 
-![image](https://img.zmal.top/image.39ltedozl3.webp)
+![image](https://img.zmal.top/20260529/image.39ltedozl3.webp)
 
 ## 安装pwsh7
 

@@ -14,7 +14,7 @@ regedit
 计算机\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\GameDVR
 ```
 将`AppCaptureEnabled`改为1
-![image](https://img.zmal.top/20250411/image.70aiupf3bi.jpg)
+![image](https://img.zmal.top/2025/0411/image.70aiupf3bi.jpg)
 若无`AppCaptureEnabled`请右键单击该空间并选择New > DROWD (32-bit) Value。将其命名为`AppCaptureEnabled`
 
 >参考链接
