@@ -1,7 +1,11 @@
 ---
 title: 使用Cap实现方便的人机验证
 date: 2025-10-19 17:53:00
-tags: 笔记
+tags:
+  - 笔记
+  - 教程
+  - JavaScript
+  - 验证
 ---
 
 [Cap](https://capjs.js.org/) 是一种现代、轻量级、开源的验证码替代方案，使用 SHA-256 工作量证明。

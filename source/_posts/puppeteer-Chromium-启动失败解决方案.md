@@ -2,7 +2,11 @@
 title: puppeteer Chromium 启动失败
 Translate_title: puppeter-Chromium-start-failed
 comments: true
-tags: 知识
+tags:
+  - 知识
+  - 笔记
+  - Linux
+  - 教程
 published: true
 layout: post
 date: 2025-03-26 19:22:39
@@ -12,7 +16,8 @@ updated: 2025-03-26 19:30:24
 ![image](https://img.zmal.top/old/image.icaefg9f5.jpg)
 
 ## YUM（CentOS/RHEL）命令
-```
+
+```bash
 yum install -y \
     pango.x86_64 libXcomposite.x86_64 libXcursor.x86_64 libXdamage.x86_64 \
     libXext.x86_64 libXi.x86_64 libXtst.x86_64 cups-libs.x86_64 \
@@ -22,8 +27,10 @@ yum install -y \
     xorg-x11-utils xorg-x11-fonts-cyrillic xorg-x11-fonts-Type1 \
     xorg-x11-fonts-misc
 ```
+
 ## APT（Debian/Ubuntu）命令
-```
+
+```bash
 apt-get update && apt-get install -y --no-install-recommends \
     google-chrome-stable tzdata redis-server \
     ttf-wqy-zenhei ttf-wqy-microhei fonts-arphic-ukai fonts-arphic-uming \

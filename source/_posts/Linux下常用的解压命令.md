@@ -1,7 +1,10 @@
 ---
 title: Linux 下常用的解压命令
 date: 2025-04-05 22:16:01
-tags: 笔记
+tags:
+  - 笔记
+  - Linux
+  - 知识
 ---
 
 `p7zip-full`、`unzip` 和 `tar` 是 Linux 下常用的压缩与解压工具，以下是它们的常见用法整理。

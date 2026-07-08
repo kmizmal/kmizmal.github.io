@@ -5,6 +5,8 @@ tags:
   - 日记
   - 笔记
   - 教程
+  - Linux
+  - 网络
 published: true
 layout: post
 date: 2025-03-27 16:04:12

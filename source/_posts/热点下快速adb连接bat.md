@@ -5,6 +5,8 @@ comments: true
 tags:
   - 日记
   - 笔记
+  - Android
+  - ADB
 published: true
 layout: post
 date: 2025-01-08 17:53:45

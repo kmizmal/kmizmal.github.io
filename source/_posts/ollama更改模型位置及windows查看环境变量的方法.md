@@ -4,6 +4,9 @@ Translate_title: how-to-reposition-the-model-and-windows-to-view-environmental-v
 comments: true
 tags:
   - 知识
+  - AI
+  - Ollama
+  - 笔记
 published: true
 layout: post
 date: 2025-03-18 21:50:25
@@ -45,53 +48,53 @@ PowerShell 执行`echo $env:OLLAMA_MODELS`检查
 ollama run <模型名>  
 运行指定模型并进入交互模式
 
-```
+```pwsh
 ollama run deepseek-r1:32b
 ```
 
 列出本地已下载的模型
 
-```
+```pwsh
 ollama list
 ```
 
 列出已加载模型
 
-```
+```pwsh
 ollama ps
 ```
 
 ollama show <模型名>  
 显示模型信息
 
-```
+```pwsh
 ollama show llama3.2
 ```
 
 ollama pull <模型名>  
 下载模型（不运行）(可用于更新)
 
-```
+```pwsh
 ollama pull codellama
 ```
 
 ollama rm <模型名>
 删除本地模型
 
-```
+```pwsh
 ollama rm mistral
 ```
 
 启动 Ollama 服务（API 模式）
 
-```
+```pwsh
 ollama serve
 ```
 
 ollama stop <模型名>
 停止当前正在运行的模型
 
-```
+```pwsh
 ollama stop deepseek-r1:14b
 ```
 

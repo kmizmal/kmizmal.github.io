@@ -5,12 +5,11 @@ comments: true
 tags: 
   - 知识
   - 笔记
+  - JavaScript
 published: true
 layout: post
 date: 2025-03-06 21:11:06
 ---
-
-### JavaScript 基础语法笔记
 
 ## **变量**
 
