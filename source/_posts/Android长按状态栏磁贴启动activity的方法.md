@@ -3,6 +3,8 @@ title: Android长按状态栏磁贴启动activity的方法
 date: 2025-06-12 12:53:20
 tags:
   - 笔记
+  - Android
+  - 教程
 ---
 <!-- more -->
 首先需要定义这样的一个服务插件磁贴

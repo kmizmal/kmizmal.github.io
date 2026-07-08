@@ -3,9 +3,12 @@ title: win休眠消失解决方法
 date: 2025-06-18 10:53:35
 tags:
   - 笔记
+  - Windows
+  - 知识
 ---
-# 省流
-```
+## 省流
+
+```pwsh
 powercfg /hibernate on
 ```
 

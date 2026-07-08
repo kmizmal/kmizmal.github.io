@@ -3,6 +3,8 @@ title: 快速将WinForm程序打包成单exe文件
 date: 2025-06-11 20:52:42
 tags:
   - 笔记
+  - 教程
+  - C#
 ---
 ## ~~省流：[Costura.Fody](https://github.com/Fody/Costura)~~
 <!-- more -->

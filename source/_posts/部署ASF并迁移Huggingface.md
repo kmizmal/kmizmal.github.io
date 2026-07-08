@@ -6,13 +6,14 @@ tags:
   - 迁移
   - 教程
   - Huggingface
+  - Steam
 published: true
 layout: post
 date: 2024-10-25 08:23:12
 updated: 2025-01-03 15:45:12
 ---
 
-# 介绍
+## 介绍
 
 ~~[ASF](https://github.com/JustArchiNET/ArchiSteamFarm) is a C# application with primary purpose of farming Steam cards from multiple accounts simultaneously. Unlike Idle Master which works only for one account at given time, while requiring Steam client running in the background and launching additional processes imitating "game playing" status, ASF doesn't require any Steam client running in the background, doesn't launch any additional processes and is made to handle unlimited Steam accounts at once. In addition to that, it's meant to be run on servers or other desktop-less machines, and features full cross-OS support, which makes it possible to launch on any operating system with .NET Core runtime, such as Windows, Linux and macOS. ASF is possible thanks to gigantic amount of work done in marvelous SteamKit2 library.~~
 
@@ -20,11 +21,11 @@ updated: 2025-01-03 15:45:12
 
 <!-- more -->
 
-# 开始
+## 开始
 
 [官方文档](https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Setting-up-zh-CN)
 
-## 安装.NET 依赖
+### 安装.NET 依赖
 
 [Windows：](https://learn.microsoft.com/zh-cn/dotnet/core/install/windows)
 
@@ -37,7 +38,7 @@ updated: 2025-01-03 15:45:12
 apt-get update&& apt-get upgrade -y&& apt-get install -y ca-certificates libc6 libgcc-s1 libicu70 libgssapi-krb5-2 libssl3 libstdc++6 zlib1g
 ```
 
-## 下载可执行文件
+### 下载可执行文件
 
 [https://github.com/JustArchiNET/ArchiSteamFarm/releases/latest](https://github.com/JustArchiNET/ArchiSteamFarm/releases/latest)
 
@@ -61,7 +62,7 @@ apt-get update&& apt-get upgrade -y&& apt-get install -y ca-certificates libc6 l
 
 ![1](https://img.zmal.top/old/1.3uuzeq4cw1.jpg)
 
-## 配置
+### 配置
 
 推荐使用官方[在线配置文件生成器](https://justarchinet.github.io/ASF-WebConfigGenerator/#/bot)
 
@@ -71,7 +72,7 @@ apt-get update&& apt-get upgrade -y&& apt-get install -y ca-certificates libc6 l
 
 下载之后扔到 config 文件夹
 
-## 启动
+### 启动
 
 ```bash
 ./ArchiSteamFarm
@@ -80,7 +81,7 @@ apt-get update&& apt-get upgrade -y&& apt-get install -y ca-certificates libc6 l
 第一次推荐控制台启动，方便看日志，后期 windows 可以用文件夹里的.exe 启动，Linux 可以用文件夹里的.sh 启动
 ![3](https://img.zmal.top/old/3.4ub2rw741d.jpg)![4](https://img.zmal.top/old/4.1sf6qo5ruc.jpg)
 
-## 后期修改配置文件
+### 后期修改配置文件
 
 使用 [ASF-ui](https://github.com/JustArchiNET/ArchiSteamFarm/wiki/IPC-zh-CN#asf-ui)
 当你看到控制台这些日志输出的时候，说明 ASF-ui 已被正确启动~~\*别管我改端口号，默认就是**1242\***~~
@@ -93,7 +94,7 @@ apt-get update&& apt-get upgrade -y&& apt-get install -y ca-certificates libc6 l
 我们~~只需要~~在 GamesPlayedWhileIdle 添加游戏的 id 就可以开始刷指定游戏的时长
 其他的里面解释的很详细，自己看着改
 
-## 进一步配置
+### 进一步配置
 
 **_同时挂多个帐户_**
 ASF 支持同时挂多个帐户，这也是它的主要功能之一。 您可以通过生成更多机器人配置文件来向 ASF 添加更多帐户，其方法与您之前生成第一个机器人配置完全相同。 您只需要确保两件事：
@@ -103,7 +104,12 @@ ASF 支持同时挂多个帐户，这也是它的主要功能之一。 您可以
 
 **懒得写了**，进一步配置自己看[文档](https://github.com/JustArchiNET/ArchiSteamFarm/wiki/Setting-up-zh-CN#%E8%BF%9B%E4%B8%80%E6%AD%A5%E9%85%8D%E7%BD%AE)去
 
-# 下面开始将迁移到 huggingface 的步骤
+<!-- markdownlint-disable MD033 -->
+
+<details>
+<summary>此方法可能存在仓库/账户被封禁的风险，已不推荐使用</summary>
+
+### 下面开始将迁移到 huggingface 的步骤
 
 如果你不知道什么是[huggingface](https://huggingface.co/)，~~那我也懒得解释，~~你只需要知道它是和 cf 差不多的赛博大善人就行
 
@@ -157,3 +163,4 @@ CMD bash ArchiSteamFarm-Service.sh
 但[huggingface](https://huggingface.co/)的 docker 里面数据不能持久化，要想稳只能先暂停 bot，然后在本地改好重复上面的步骤覆盖上传 config.zip
 
 [huggingface](https://huggingface.co/)的 space~~好像~~三天无访问就会自动休眠，我这里采用[uptimerobot](https://uptimerobot.com/)探针报活，能用，但不好用，如果你知道其他更好的方法欢迎告诉我
+</details>

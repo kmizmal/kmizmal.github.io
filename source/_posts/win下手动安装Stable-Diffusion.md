@@ -4,6 +4,9 @@ date: 2025-07-20 20:57:05
 tags:
   - 笔记
   - GitHub
+  - AI
+  - 教程
+  - StableDiffusion
 ---
 
 刚开始是在装stability-ai/stablediffusion的，最后发现没有webui又换AUTOMATIC1111/stable-diffusion-webui了，所以文档写的有点乱喵
@@ -13,7 +16,7 @@ tags:
 在[这里](https://docs.conda.io/en/latest/)下载`Miniforge`版安装  
 我的安装路径是`X:\Soft\conda`,需要将`X:\Soft\conda\Scripts`添加到系统`PATH`变量
 
-```
+```pwsh
 conda --version
 ```
 
@@ -21,7 +24,7 @@ conda --version
 
 推荐再顺手改一下常用配置
 
-```
+```pwsh
 # 换源
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free
@@ -49,7 +52,7 @@ conda config --set remote_backoff_factor 2
 
 ~~安装[git](https://git-scm.com/downloads)不教~~
 
-```
+```pwsh
 git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui
 cd stable-diffusion-webui
 ```
@@ -58,48 +61,49 @@ cd stable-diffusion-webui
 
 ### 创建虚拟环境
 
-```
+```pwsh
 conda create -n sd-env python=3.10
 ```
 
 显示
 
+> ```pwsh
+> done
+> #
+> # To activate this environment, use
+> #
+> #     $ conda activate sd-env
+> #
+> # To deactivate an active environment, use
+> #
+> #     $ conda deactivate
+> ```
 >
-
-    ```
-    done
-    #
-    # To activate this environment, use
-    #
-    #     $ conda activate sd-env
-    #
-    # To deactivate an active environment, use
-    #
-    #     $ conda deactivate
-    ```
-
 > 就成功了，~~失败就多试几遍~~
 
 ### 激活虚拟环境
 
 之后运行
 
-```
+```pwsh
 conda activate sd-env
 ```
 
 命令行开头出现`(sd-env)`说明成功  
 如果失败请尝试
 
-```
+```pwsh
 conda init powershell
 ```
 
 之后重试
+
 #### 退出虚拟环境
-```
+
+```pwsh
 conda deactivate
 ```
+
 ## 安装依赖
 
 ~~最痛苦的一集啊啊啊~~
@@ -107,13 +111,13 @@ conda deactivate
 
 ### 基础依赖
 
-```
+```pwsh
 conda install pytorch==1.12.1 torchvision==0.13.1 -c pytorch
 ```
 
 如果你也是 4060 或者以上的显卡也可以加装一个`CUDA`,虽然能带来性能提升，但也要准备遇到更多问题的准备
 
-```
+```pwsh
 conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
 ```
 
@@ -122,37 +126,39 @@ conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvi
 
 > 如果你也破防了可以先安装启用多线程下载 mamba
 
-```
+```pwsh
 conda install mamba
 ```
 
 然后使用
 
-```
+```pwsh
 mamba install pytorch==1.12.1 torchvision==0.13.1 -c pytorch
 ```
 
 或者作死的
 
-```
+```pwsh
 mamba install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
 ```
 
 ### pip 依赖
 
-```
+```pwsh
 pip install transformers==4.19.2 diffusers invisible-watermark
 pip install -e .    #得在项目路径执行
 ```
 
 但是我还想装`xformers`，~~要在依赖冲突的路上越走越远了~~
 
-```
+```pwsh
 pip install torch==2.2.0+cu121 torchvision==0.17.0+cu121 torchaudio==2.2.0+cu121 --index-url https://download.pytorch.org/whl/cu121      #不降级就等着依赖冲突吧
 
 pip install xformers==0.0.24
 ```
-## 启动！
-```
+
+## 启动
+
+```pwsh
 python launch.py
 ```

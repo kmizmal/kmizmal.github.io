@@ -24,15 +24,20 @@ If you are using the featured artwork showcase which is only one big middle artw
 >
 艺术作品
 js改图
-```
+
+```js
 $J('#image_width').val(1000).attr('id',''),$J('#image_height').val(1).attr('id','');
 ```
+
 隐藏作品名称
-```
+
+```js
 v_trim=_=>{return _},$J('#title').val(' \n'+Array.from(Array(126),_=>'\t').join(''));
 ```
+
 移除勋章
-```
+
+```js
 var access_token = $J("[data-loyaltystore]").data("loyaltystore").webapi_token;
 
 var badgeid = 0;
@@ -55,7 +60,8 @@ badgeid: badgeid
 [我的个人资料](https://steamcommunity.com/id/kmizmal/)
 
 > 参考资料
->- https://blog.yuki.sh/posts/daf9288c81ba/
->- https://bili33.top/posts/Steam-Artwork/
->- https://nanodaovo.github.io/2024/03/19/steam_background_beautify/
->- https://steamcommunity.com/sharedfiles/filedetails/?id=3410802985
+>
+>- <https://blog.yuki.sh/posts/daf9288c81ba/>
+>- <https://bili33.top/posts/Steam-Artwork/>
+>- <https://nanodaovo.github.io/2024/03/19/steam_background_beautify/>
+>- <https://steamcommunity.com/sharedfiles/filedetails/?id=3410802985>
