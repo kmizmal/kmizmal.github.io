@@ -12,7 +12,7 @@
     "version": "8.1.2"
   },
   "dependencies": {
-    "baseline-browser-mapping": "^2.10.42",
+    "baseline-browser-mapping": "^2.11.21",
     "caniuse-lite": "^1.0.30001809",
     "cheerio": "^1.2.0",
     "hexo": "^8.1.2",
