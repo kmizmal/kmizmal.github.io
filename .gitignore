@@ -9,3 +9,7 @@ public/
 _multiconfig.yml
 *.7z
 .omo/
+# 避免把大体积/私有元数据误提交进博客仓库
+source/mass/*.zip
+source/_posts/.obsidian/
+.workbuddy/
