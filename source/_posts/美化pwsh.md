@@ -41,6 +41,7 @@ $env:Path += ";C:\Users\<user>\AppData\Local\Programs\oh-my-posh\bin"
 在打开的Windows Powershell界面按下` Ctrl+shift+,` 在打开的`settings.json`配置文件中找到"defaults"项, 在其中加入`"face": "MesloLGM Nerd Font"`
 
 插入后结构如下：
+
 ```json
 {
     "profiles":
@@ -55,7 +56,11 @@ $env:Path += ";C:\Users\<user>\AppData\Local\Programs\oh-my-posh\bin"
     }
 }
 ```
+
+或者在设置中手动指定`MesloLGM Nerd Font`
+
 ## 配置使用Oh My Posh
+
 在 Windows Powershell 输入以下命令创建profile：
 ```powershell
 New-Item -Path $PROFILE -Type File -Force
@@ -67,7 +72,8 @@ code $PROFILE
 notepad $PROFILE
 ```
 
-填入这行代码并保存：
+~~填入这行代码并保存：~~
+
 
 ```powershell
 oh-my-posh init pwsh --config 'C:\Program Files\WindowsApps\ohmyposh.cli_<需要替换为具体的版本号>\themes\<需要指定明确的主题文件>' | Invoke-Expression
@@ -77,18 +83,26 @@ oh-my-posh init pwsh --config 'C:\Program Files\WindowsApps\ohmyposh.cli_<需要
 oh-my-posh init pwsh --config "C:\Program Files\WindowsApps\ohmyposh.cli_29.14.0.0_x64__96v55e8n804z4\themes\amro.omp.json" | Invoke-Expression
 ```
 
+> 打不开在下面自行下载主题文件
+
 可以在 ***[这里](https://ohmyposh.dev/docs/themes)*** 寻找你喜欢的主题样式
 
-保存配置后重启终端 Oh My Posh 应该就可以正常使用了
+~~保存配置后重启终端 Oh My Posh 应该就可以正常使用了~~
 
-> 或者先创建初始化脚本再写入`$PROFILE`可以一定程度上加快pwsh的启动速度
+> 创建初始化脚本再写入`$PROFILE`可以一定程度上加快pwsh的启动速度
+
 ```powershell
-oh-my-posh init pwsh --config "$env:USERPROFILE\amro.omp.json"  --print > "$env:USERPROFILE\ohmyposh_init.ps1"
+oh-my-posh init pwsh --config "E:\zmal\.zmal\amro.omp.json"  --print > "$env:USERPROFILE\ohmyposh_init.ps1"
 ```
- $PROFILE
-```
+
+(自行替换`"E:\zmal\.zmal\amro.omp.json"`为刚才保存的主题配置文件地址)  
+
+$PROFILE
+
+```text
 . "$env:USERPROFILE\ohmyposh_init.ps1"
 ```
+
 ## 额外的图标库配置
 
 ```powershell
