@@ -52,4 +52,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
           cname: blog.zmal.top
-          keep_files: true
+          keep_files: false
