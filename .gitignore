@@ -13,3 +13,6 @@ _multiconfig.yml
 source/mass/*.zip
 source/_posts/.obsidian/
 .workbuddy/
+
+# 翻译缓存（由主题脚本生成，不入库）
+.cache/
