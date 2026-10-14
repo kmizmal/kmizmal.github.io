@@ -1,16 +1,14 @@
 ---
 title: 在Linux系统上安装使用mihomo
-comments: true
+Translate_title: Install-mihomo-on-Linux
+date: 2025-03-27 16:04:12
+updated: 2025-03-27 16:04:12
 tags:
   - 日记
   - 笔记
   - 教程
   - Linux
   - 网络
-published: true
-layout: post
-date: 2025-03-27 16:04:12
-updated: 2025-03-27 16:04:12
 ---
 
 1. 创建文件目录

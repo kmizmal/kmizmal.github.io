@@ -1,5 +1,6 @@
 ---
 title: 使用Cap实现方便的人机验证
+Translate_title: Use-Cap-for-convenient-human-machine-authentication
 date: 2025-10-19 17:53:00
 tags:
   - 笔记

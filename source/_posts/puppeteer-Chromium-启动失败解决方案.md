@@ -1,16 +1,13 @@
 ---
 title: puppeteer Chromium 启动失败
-Translate_title: puppeter-Chromium-start-failed
-comments: true
+Translate_title: puppeteer-Chromium-Start-Failed
+date: 2025-03-26 19:22:39
+updated: 2025-03-26 19:30:24
 tags:
   - 知识
   - 笔记
   - Linux
   - 教程
-published: true
-layout: post
-date: 2025-03-26 19:22:39
-updated: 2025-03-26 19:30:24
 ---
 可以解决
 ![image](https://img.zmal.top/old/image.icaefg9f5.jpg)

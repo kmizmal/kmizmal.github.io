@@ -1,5 +1,6 @@
 ---
 title: Window设置程序自启动
+Translate_title: Windows-settings-start-now
 date: 2025-06-22 11:40:00
 tags:
   - 笔记

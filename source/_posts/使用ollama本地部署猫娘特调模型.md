@@ -1,5 +1,6 @@
 ---
 title: 使用ollama本地部署猫娘特调模型
+Translate_title: use-ollama-to-deploy-catgirl-model-locally
 date: 2026-03-02 11:26:31
 tags:
 ---

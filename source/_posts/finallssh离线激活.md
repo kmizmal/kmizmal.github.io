@@ -1,5 +1,6 @@
 ---
 title: finallssh离线激活
+Translate_title: finallssh-offline-active
 date: 2025-05-11 11:04:55
 tags: 
   - 知识

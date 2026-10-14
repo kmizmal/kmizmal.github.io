@@ -1,5 +1,6 @@
 ---
 title: 美化pwsh
+Translate_title: beautiful-pwsh
 date: 2026-05-23 10:03:04
 tags: 
     - 笔记

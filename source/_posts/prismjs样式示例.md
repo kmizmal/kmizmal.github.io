@@ -1,5 +1,6 @@
 ---
 title: prismjs样式示例
+Translate_title: example-of-prismjs-styles
 date: 2025-07-20 11:13:42
 tags:
   - 示例

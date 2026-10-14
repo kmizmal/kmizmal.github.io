@@ -1,5 +1,6 @@
 ---
 title: Git仓库操作
+Translate_title: Git-repository-operation
 date: 2025-04-03 21:30:34
 tags:
   - 笔记

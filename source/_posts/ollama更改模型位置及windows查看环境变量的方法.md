@@ -1,16 +1,13 @@
 ---
 title: ollama更改模型位置及windows查看环境变量的方法
 Translate_title: how-to-reposition-the-model-and-windows-to-view-environmental-variables
-comments: true
+date: 2025-03-18 21:50:25
+updated: 2025-03-20 17:45:35
 tags:
   - 知识
   - AI
   - Ollama
   - 笔记
-published: true
-layout: post
-date: 2025-03-18 21:50:25
-updated: 2025-03-20 17:45:35
 ---
 
 ## ollama 可能用到的环境变量

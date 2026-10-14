@@ -1,5 +1,6 @@
 ---
 title: 批量移除steam免费喜加一游戏
+Translate_title: batch-removal-of-steam-free-plus-one-game
 date: 2025-06-24 21:53:04
 tags:
   - Steam

@@ -1,5 +1,6 @@
 ---
 title: 在 Win 上使用 rclone 配合 OpenList WebDAV 同步文件夹
+Translate_title: Use-rclone-with-OpenList-WebDAV-to-Sync-Folders-on-Win
 date: 2026-07-07 22:24:27
 tags:
   - rclone

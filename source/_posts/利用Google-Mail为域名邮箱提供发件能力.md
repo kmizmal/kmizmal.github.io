@@ -1,5 +1,6 @@
 ---
 title: 利用Google Mail为域名邮箱提供发件能力
+Translate_title: Delivery-capability-for-domain-mail-using-Google-Mail
 date: 2025-09-25 18:28:22
 tags: 
   - 知识

@@ -1,16 +1,13 @@
 ---
 title: 热点下快速adb连接bat
 Translate_title: rapid-adb-connection-at-hotspot
-comments: true
+date: 2025-01-08 17:53:45
+updated: 2025-01-08 18:07:57
 tags:
   - 日记
   - 笔记
   - Android
   - ADB
-published: true
-layout: post
-date: 2025-01-08 17:53:45
-updated: 2025-01-08 18:07:57
 ---
 
 我觉得[scrcpy](https://github.com/Genymobile/scrcpy)挺好用的，但是我刷了[box4](https://github.com/Genymobile/scrcpy)走系统级代理导致 usb 网络共享总是出现奇奇怪怪的 bug

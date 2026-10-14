@@ -1,5 +1,6 @@
 ---
 title: HTML mix-blend-mode属性的用法
+Translate_title: Use-of-HTML-mixblendmodode-Properties
 date: 2025-07-16 16:13:54
 tags:
   - 知识

@@ -1,15 +1,12 @@
 ---
 title: Steam个人资料美化
-Translate_title: Steam's-personal-data-beautification
-comments: true
+Translate_title: Steam-profile-beautification
+date: 2025-03-21 07:19:51
+updated: 2025-03-26 20:59:22
 tags:
   - Steam
   - 知识
   - 美化
-published: true
-layout: post
-date: 2025-03-21 07:19:51
-updated: 2025-03-26 20:59:22
 ---
 
 [创意工坊链接](https://steamcommunity.com/workshop/edititem/570/11)

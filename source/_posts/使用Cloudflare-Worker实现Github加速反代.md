@@ -1,5 +1,6 @@
 ---
 title: 使用Cloudflare Workers实现Github加速反代
+Translate_title: Github-accelerated-inverse-using-Cloudflare-Workers
 date: 2025-06-12 13:03:32
 tags:
   - 笔记

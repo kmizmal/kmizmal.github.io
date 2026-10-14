@@ -1,12 +1,9 @@
 ---
 title: sleepy?
-Translate_title: sleepy?
-comments: true
-tags: 日记
-published: true
-layout: post
+Translate_title: sleepy
 date: 2025-02-09 17:12:10
 updated: 2025-02-10 13:47:55
+tags: 日记
 ---
 
 ~~最进有一个人研究了好几天~~  

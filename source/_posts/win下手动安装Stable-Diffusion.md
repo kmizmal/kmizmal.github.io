@@ -1,5 +1,6 @@
 ---
 title: win下手动安装Stable Diffusion
+Translate_title: win-manually-install-Stable-Diffusion
 date: 2025-07-20 20:57:05
 tags:
   - 笔记

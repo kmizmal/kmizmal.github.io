@@ -1,16 +1,13 @@
 ---
 title: 部署ASF并迁移Huggingface
 Translate_title: Deployment-of-ASF-and-relocation-of-Huggingface
-comments: true
+date: 2024-10-25 08:23:12
+updated: 2025-01-03 15:45:12
 tags:
   - 迁移
   - 教程
   - Huggingface
   - Steam
-published: true
-layout: post
-date: 2024-10-25 08:23:12
-updated: 2025-01-03 15:45:12
 ---
 
 ## 介绍

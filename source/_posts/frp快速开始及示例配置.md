@@ -1,5 +1,6 @@
 ---
 title: frp快速开始及示例配置
+Translate_title: frp-fast-start-and-example-configuration
 date: 2025-09-18 18:00:14
 tags: 
   - 知识

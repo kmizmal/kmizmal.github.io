@@ -1,5 +1,6 @@
 ---
 title: lanerc入站考试自用题库
+Translate_title: lanerc-entry-test-self-service-library
 date: 2025-07-10 13:32:29
 tags:
   - 题库

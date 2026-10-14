@@ -1,5 +1,6 @@
 ---
 title: 快速将WinForm程序打包成单exe文件
+Translate_title: Package-WinForms-App-into-a-Single-EXE
 date: 2025-06-11 20:52:42
 tags:
   - 笔记

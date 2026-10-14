@@ -1,15 +1,12 @@
 ---
 title: hexo标题翻译插件
 Translate_title: hexo-heading-translation-plugin
-comments: true
+date: 2025-01-04 11:43:58
+updated: 2025-01-04 14:44:42
 tags:
   - 工具
   - Hexo
   - 笔记
-published: true
-layout: post
-date: 2025-01-04 11:43:58
-updated: 2025-01-04 14:44:42
 ---
 
 使用[libretranslate](https://github.com/LibreTranslate/LibreTranslate)将 Hexo 中的汉字标题转成英文标题，开箱即用，无需手工修改标题内容

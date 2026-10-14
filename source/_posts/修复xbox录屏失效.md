@@ -1,5 +1,6 @@
 ---
 title: 修复xbox录屏失效
+Translate_title: Fix-Xbox-Screen-Recording-Failure
 date: 2025-04-11 21:08:02
 tags:
   - 知识

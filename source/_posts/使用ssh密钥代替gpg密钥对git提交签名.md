@@ -1,5 +1,6 @@
 ---
 title: 使用ssh密钥代替gpg密钥对git提交签名
+Translate_title: use-ssh-key-instead-of-gpg-key-to-sign
 date: 2025-09-28 21:42:19
 tags:
   - Github

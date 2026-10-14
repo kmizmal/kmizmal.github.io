@@ -1,5 +1,6 @@
 ---
 title: win休眠消失解决方法
+Translate_title: windows-sleep-option-disappeared
 date: 2025-06-18 10:53:35
 tags:
   - 笔记

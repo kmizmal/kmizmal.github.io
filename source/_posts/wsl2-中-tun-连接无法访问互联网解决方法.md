@@ -1,5 +1,6 @@
 ---
 title: wsl2 中 tun 连接无法访问互联网解决方法
+Translate_title: wsl2-c-tun-link-cannot-access-internet-solutions
 date: 2026-05-27 17:05:07
 tags:
   - 笔记

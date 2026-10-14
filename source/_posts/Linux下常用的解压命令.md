@@ -1,5 +1,6 @@
 ---
 title: Linux 下常用的解压命令
+Translate_title: Common-Linux-Decompression-Commands
 date: 2025-04-05 22:16:01
 tags:
   - 笔记
