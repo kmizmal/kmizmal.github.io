@@ -1,0 +1,73 @@
+name: Build Check
+
+# 仅做构建验证：确认 Hexo 能在干净环境里生成静态站点、产物结构正常。
+# 站点实际由腾讯云 EdgeOne（Makers）从 main 分支直接构建并部署，这里不再发布任何产物。
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "source/**"
+      - "themes/**"
+      - "scaffolds/**"
+      - "_config.yml"
+      - "package.json"
+      - "bun.lock"
+      - ".github/workflows/build.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6.0.2
+        with:
+          submodules: true
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2.2.0
+        with:
+          bun-version: latest
+
+      - name: Cache Bun dependencies
+        uses: actions/cache@v5.0.5
+        with:
+          path: ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock', '**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
+      - name: Install dependencies
+        run: |
+          bun install
+          bun add gifsicle
+
+      - name: Generate static files
+        run: bun x hexo generate
+
+      - name: Verify build output
+        run: |
+          set -e
+          test -f public/index.html || { echo "::error::public/index.html 未生成"; exit 1; }
+
+          posts=$(find public -name '*.html' \
+            -not -path '*/archives/*' -not -path '*/tags/*' \
+            -not -path '*/categories/*' -not -path '*/page/*' \
+            | grep -v 'index.html' || true)
+          count=$(echo "$posts" | grep -c . || true)
+          echo "文章页数: $count"
+          [ "$count" -gt 0 ] || { echo "::error::没有生成任何文章页"; exit 1; }
+
+          # permalink 依赖 :Translate_title，必须是纯 ASCII slug；
+          # 非 ASCII 说明有文章漏填 Translate_title，会让线上 URL 退回中文。
+          bad=$(echo "$posts" | sed 's|public/||' | grep -P '[^\x00-\x7F]' || true)
+          if [ -n "$bad" ]; then
+            echo "::error::检测到含非 ASCII 字符的文章 URL（请检查对应文章的 Translate_title）:"
+            echo "$bad"
+            exit 1
+          fi
+
+          echo "构建产物校验通过"
