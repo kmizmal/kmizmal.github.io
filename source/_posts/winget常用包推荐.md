@@ -21,6 +21,8 @@ winget install --id Oven-sh.Bun
 
 winget install --id=astral-sh.uv -e
 
+winget install --id GitHub.cli
+
 winget install --id Gyan.FFmpeg
 
 winget install --id JRSoftware.InnoSetup.7 -e -s winget -i
