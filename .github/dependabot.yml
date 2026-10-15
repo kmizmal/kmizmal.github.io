@@ -1,6 +1,10 @@
 version: 2
 updates:
-- package-ecosystem: npm
+# 本仓库由 Bun 管理（根目录只有 bun.lock，无 package-lock.json/yarn.lock/pnpm-lock.yaml）。
+# 必须声明 bun 生态：写成 npm 会让 Dependabot 以 misconfigured_tooling 报错并中止，
+# 因为 npm_and_yarn 无法更新 bun.lock。
+# 注意：Bun 生态只支持版本更新，不支持安全更新。
+- package-ecosystem: "bun"
   directory: "/"
   schedule:
     interval: daily
