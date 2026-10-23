@@ -6,7 +6,7 @@
       "name": "hexo-site",
       "dependencies": {
         "baseline-browser-mapping": "^2.11.28",
-        "caniuse-lite": "^1.0.30001816",
+        "caniuse-lite": "^1.0.30001817",
         "cheerio": "^1.2.0",
         "hexo": "^8.1.2",
         "hexo-autoprefixer": "^2.0.0",
@@ -217,7 +217,7 @@
 
     "camel-case": ["camel-case@4.1.2", "", { "dependencies": { "pascal-case": "3.1.2", "tslib": "2.8.1" } }, "sha512-gxGWBrTT1JuMx6R+o5PTXMmUnhnVzLQ9SNutD4YqKtI6ap897t3tKECYla6gCWEkplXnlNybEkZg9GEGxKFCgw=="],
 
-    "caniuse-lite": ["caniuse-lite@1.0.30001816", "", {}, "sha512-+8Yx7BXCoqk6IF8yTicjfUR6D/ldJzdlsodlEOiOSPmhK844WIgk67/zIQaGAOxNkZyyvBlrRFnLvqKIoqbAFw=="],
+    "caniuse-lite": ["caniuse-lite@1.0.30001817", "", {}, "sha512-uZ1JG80BwhtMalIAGPxPfmNhHyd/B/nTdr3hITWlRamSyAdUStP1Gop01e7SD5q6J90ixJvWDbvmiFVfDgn4bw=="],
 
     "cheerio": ["cheerio@1.2.0", "", { "dependencies": { "cheerio-select": "2.1.0", "dom-serializer": "2.0.0", "domhandler": "5.0.3", "domutils": "3.2.2", "encoding-sniffer": "0.2.1", "htmlparser2": "10.1.0", "parse5": "7.3.0", "parse5-htmlparser2-tree-adapter": "7.1.0", "parse5-parser-stream": "7.1.2", "undici": "7.30.0", "whatwg-mimetype": "4.0.0" } }, "sha512-WDrybc/gKFpTYQutKIK6UvfcuxijIZfMfXaYm8NMsPQxSYvf+13fXUJ4rztGGbJcBQ/GF55gvrZ0Bc0bj/mqvg=="],
 
