@@ -12,8 +12,8 @@
     "version": "8.1.2"
   },
   "dependencies": {
-    "baseline-browser-mapping": "^2.11.28",
-    "caniuse-lite": "^1.0.30001816",
+    "baseline-browser-mapping": "^2.11.32",
+    "caniuse-lite": "^1.0.30001819",
     "cheerio": "^1.2.0",
     "hexo": "^8.1.2",
     "hexo-autoprefixer": "^2.0.0",
@@ -32,7 +32,7 @@
     "hexo-renderer-stylus": "^3.0.1",
     "hexo-server": "^3.0.0",
     "hexo-tag-bilibili": "^0.3.1",
-    "sass": "^1.105.1",
+    "sass": "^1.106.1",
     "sharp": "^0.35.5"
   },
   "pnpm": {

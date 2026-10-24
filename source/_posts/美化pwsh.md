@@ -30,7 +30,7 @@ winget install JanDeDobbeleer.OhMyPosh -s winget
 ```powershell
 oh-my-posh font install meslo
 ```
-
+![ScreenShot_2026-10-09_123941_491](https://img.zmal.top/20261014/ScreenShot_2026-10-09_123941_491.70b4q4ywbk.webp)
 > 如果报错 无法将“oh-my-posh”项识别为 cmdlet、函数、脚本文件或可运行程序的名称
 > 输入以下命令手动添加环境变量  ***或者确定你重启了powershell***
 ```powershell

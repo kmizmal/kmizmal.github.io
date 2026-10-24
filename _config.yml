@@ -28,7 +28,13 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
+# 主题 source 下的这三个文件必须原样输出，不能交给 js 渲染器（hexo-babel）转译：
+# sw.js 运行在 ServiceWorkerGlobalScope，cdn-*.js 依赖 ES5 形态，任何转译都可能破坏它们。
+# 注：skip_render 由 asset 处理器统一判定，对 themes/*/source 同样生效，路径按 source 相对路径写。
 skip_render:
+  - sw.js
+  - js/cdn-config.js
+  - js/cdn-race.js
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -107,3 +113,8 @@ babel:
     options:
     exclude:
         - "*.min.js"
+        # 注意：hexo-babel 的 exclude 按 basename 匹配，这里只能写文件名。
+        # 主防线仍是上面的 skip_render（它按 source 相对路径匹配）。
+        - "sw.js"
+        - "cdn-config.js"
+        - "cdn-race.js"
