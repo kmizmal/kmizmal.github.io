@@ -19,7 +19,12 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    # ubuntu-slim：GitHub 最小的托管 runner（1 vCPU / 5 GB 内存 / 14 GB 磁盘），
+    # 运行在非特权容器内。官方没有 Debian 发行版镜像，这是体积最小的一档。
+    # 限制：单作业硬上限 15 分钟，且无法挂载文件系统或使用 Docker-in-Docker；
+    # 本作业只做 bun 安装 + hexo generate + 产物校验，耗时远低于上限。
+    runs-on: ubuntu-slim
+    timeout-minutes: 15
 
     steps:
       - name: Checkout code
