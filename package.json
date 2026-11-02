@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "baseline-browser-mapping": "^2.11.32",
-    "caniuse-lite": "^1.0.30001819",
+    "caniuse-lite": "^1.0.30001820",
     "cheerio": "^1.2.0",
     "hexo": "^8.1.2",
     "hexo-autoprefixer": "^2.0.0",
